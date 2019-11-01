@@ -23,6 +23,7 @@
     "@svgdotjs/svg.draggable.js": "^3.0.2",
     "@svgdotjs/svg.js": "^3.0.14",
     "antlr4ts": "^0.5.0-alpha.3",
+    "mousetrap": "^1.6.3",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

@@ -3,14 +3,24 @@ import {Rect, Svg, SVG} from '@svgdotjs/svg.js';
 import '@svgdotjs/svg.draggable.js'
 import {CONSTANTS, DOMAIN_COLORS} from "../constant";
 
+
+
 @Component({
   selector: 'app-dcanvas',
   templateUrl: './dcanvas.component.html',
   styleUrls: ['./dcanvas.component.less']
 })
 export class DcanvasComponent implements OnInit, AfterViewInit {
+  get data(): PaoModel {
+    return this._data;
+  }
+
   @Input()
-  data = {
+  set data(value: PaoModel) {
+    this._data = value;
+    this.drawTree();
+  }
+  private _data = {
     "name": "庖丁解牛系统",
     "objects": [
       {
@@ -41,13 +51,14 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
 
 
   private drawTree() {
+    SVG().clear();
     this.draw = SVG().addTo('#drawing').size(3840, 2180);
 
     let initPosition = {x: 20, y: 20};
     var basePosition: NormalPosition = initPosition;
     var width = CONSTANTS.RECT_WIDTH;
-    for (var i = 0; i < this.data.objects.length; i++) {
-      var object = this.data.objects[i];
+    for (var i = 0; i < this._data.objects.length; i++) {
+      var object = this._data.objects[i];
       basePosition.x = basePosition.x + i * (width + 20);
       this.drawDomainItem(this.draw, basePosition, width, object);
     }

@@ -4,6 +4,7 @@ import {PaoParser} from "../parser/PaoParser";
 import {CharStreams, CommonTokenStream} from "antlr4ts";
 import {ParseTreeListener, ParseTreeWalker} from "antlr4ts/tree";
 import {PaoGrammarListener} from "./PaoGrammarListener";
+import Mousetrap from "mousetrap";
 
 @Component({
   selector: 'app-editor',
@@ -33,8 +34,17 @@ export class EditorComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.renderGraph()
+    this.bindKeys()
   }
 
+  bindKeys() {
+    var that = this;
+    Mousetrap.bind(['command+s', 'ctrl+s'], function() {
+      console.log('renderGraph');
+      that.renderGraph();
+      return false;
+    });
+  }
   renderGraph() {
     var that = this;
     let inputStream = CharStreams.fromString(this.code);
@@ -45,7 +55,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
 
     const listener = new PaoGrammarListener();
     listener.onFinish(() => {
-      this.parseResult = listener.getParseResult();
+      that.parseResult = listener.getParseResult();
       that.graph = JSON.stringify(this.parseResult, null, 4);
     });
     ParseTreeWalker.DEFAULT.walk(listener as ParseTreeListener, tree);
@@ -111,13 +121,13 @@ export class EditorComponent implements OnInit, AfterViewInit {
             label: 'domain',
             kind: monaco.languages.CompletionItemKind.Snippet,
             insertText: [
-              `领域事件: \${1:condition}
-决策命令：\${1:condition}
-领域名词：\${1:condition}
-注释：\${1:condition}
-外部系统：\${1:condition}
-定时任务：\${1:condition}
-角色：\${1:condition}
+              `领域事件:\${1:condition}
+决策命令:\${1:condition}
+领域名词:\${1:condition}
+注释:\${1:condition}
+外部系统:\${1:condition}
+定时任务:\${1:condition}
+角色:\${1:condition}
 `].join('\n'),
             insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
           }];
