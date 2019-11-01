@@ -849,6 +849,15 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@materia-ui/ngx-monaco-editor@^2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@materia-ui/ngx-monaco-editor/-/ngx-monaco-editor-2.0.7.tgz#8833a599e2fcceccf04f0ff311dd2ce0c24e08cb"
+  integrity sha512-DAo4H0vvBGM+n2m/D1APUv74tFsLK4MQqBEBvLiXw+Hn12G3X8xFHvLe0Gbqy5O/DREas7QrMq2L/iCsgjSzdw==
+  dependencies:
+    css-element-queries "^1.0.2"
+    monaco-editor "^0.15.6"
+    tslib "^1.9.0"
+
 "@ngtools/webpack@8.3.17":
   version "8.3.17"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-8.3.17.tgz#ce0b415950c677037096a3e17db3adfd7ce577bf"
@@ -2452,6 +2461,11 @@ crypto-browserify@^3.11.0:
     public-encrypt "^4.0.0"
     randombytes "^2.0.0"
     randomfill "^1.0.3"
+
+css-element-queries@^1.0.2:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/css-element-queries/-/css-element-queries-1.2.1.tgz#70d1a0f676fc0bd0a3306522a5b2d3bcc55c9fe6"
+  integrity sha512-hiI1tSzf+U/gE13qhfwnCvN90Ay0THnE+mT3pjN/c/mvFmEUHZVNrvMJrrkw2ppOzkl69FdgH2ZGZENYQUaN2A==
 
 css-parse@1.7.x:
   version "1.7.0"
@@ -5001,6 +5015,11 @@ mkdirp@0.5.x, mkdirp@^0.5.0, mkdirp@^0.5.1:
   integrity sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
   dependencies:
     minimist "0.0.8"
+
+monaco-editor@^0.15.6:
+  version "0.15.6"
+  resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.15.6.tgz#d63b3b06f86f803464f003b252627c3eb4a09483"
+  integrity sha512-JoU9V9k6KqT9R9Tiw1RTU8ohZ+Xnf9DMg6Ktqqw5hILumwmq7xqa/KLXw513uTUsWbhtnHoSJYYR++u3pkyxJg==
 
 move-concurrently@^1.0.1:
   version "1.0.1"

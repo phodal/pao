@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EditorComponent } from './editor/editor.component';
+import { MonacoEditorModule } from '@materia-ui/ngx-monaco-editor';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import { EditorComponent } from './editor/editor.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    MonacoEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

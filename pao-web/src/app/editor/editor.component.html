@@ -1,1 +1,7 @@
-<p>editor works!</p>
+<div class="editor">
+    <ngx-monaco-editor
+            [ngStyle]="{'height': '1000px'}"
+            [options]="editorOptions"
+            [(ngModel)]="code">
+    </ngx-monaco-editor>
+</div>

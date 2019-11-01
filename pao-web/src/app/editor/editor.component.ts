@@ -11,10 +11,8 @@ import {PaoGrammarListener} from "./PaoGrammarListener";
   styleUrls: ['./editor.component.less']
 })
 export class EditorComponent implements OnInit {
-
-  ngOnInit() {
-// Create the lexer and parser
-    let inputStream = CharStreams.fromString(`
+  editorOptions = {theme: 'vs-dark', language: 'javascript'};
+  code: any = `
 系统名称:庖丁解牛系统
 
 领域事件:a
@@ -29,9 +27,14 @@ export class EditorComponent implements OnInit {
 
 字段: [
 名称: Phodal
-]
+]`;
 
-`);
+  ngOnInit() {
+    this.renderGraph()
+  }
+
+  renderGraph() {
+    let inputStream = CharStreams.fromString(this.code);
     let lexer = new PaoLexer(inputStream);
     let tokenStream = new CommonTokenStream(lexer);
     let parser = new PaoParser(tokenStream);
@@ -44,5 +47,4 @@ export class EditorComponent implements OnInit {
     });
     ParseTreeWalker.DEFAULT.walk(listener as ParseTreeListener, tree);
   }
-
 }
