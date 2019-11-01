@@ -1,6 +1,10 @@
 import {PaoListener} from "../parser/PaoListener";
 import {
-  DomainEventDeclarationContext, RuleListContext, SystemNameDeclarationContext,
+  DomainEventDeclarationContext,
+  NewLineDeclarationContext,
+  NewSectionDeclarationContext,
+  RuleListContext,
+  SystemNameDeclarationContext,
   TypeRuleDeclarationContext
 } from "../parser/PaoParser";
 
@@ -25,6 +29,10 @@ export class PaoGrammarListener implements PaoListener {
       console.log(ident.text)
     })
   }
+
+  enterNewSectionDeclaration(ctx: NewSectionDeclarationContext) {
+    console.log("/......");
+  };
 
   enterTypeRuleDeclaration(ctx: TypeRuleDeclarationContext) {
 

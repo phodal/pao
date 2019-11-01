@@ -5,9 +5,9 @@ import { ParseTreeVisitor } from "antlr4ts/tree/ParseTreeVisitor";
 
 import { CompilationUnitContext } from "./PaoParser";
 import { SystemNameDeclarationContext } from "./PaoParser";
-import { NameDeclarationContext } from "./PaoParser";
 import { TypeDeclarationContext } from "./PaoParser";
 import { TypeRuleDeclarationContext } from "./PaoParser";
+import { NameDeclarationContext } from "./PaoParser";
 import { DomainEventDeclarationContext } from "./PaoParser";
 import { CommadEventDeclarationContext } from "./PaoParser";
 import { CarrierDeclarationContext } from "./PaoParser";
@@ -18,6 +18,7 @@ import { RoleDeclarationContext } from "./PaoParser";
 import { EnterRuleDeclarationContext } from "./PaoParser";
 import { InputRuleDeclarationContext } from "./PaoParser";
 import { FieldDeclarationContext } from "./PaoParser";
+import { NewSectionDeclarationContext } from "./PaoParser";
 import { RuleListContext } from "./PaoParser";
 import { FieldListContext } from "./PaoParser";
 
@@ -45,13 +46,6 @@ export interface PaoVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitSystemNameDeclaration?: (ctx: SystemNameDeclarationContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `PaoParser.nameDeclaration`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitNameDeclaration?: (ctx: NameDeclarationContext) => Result;
-
-	/**
 	 * Visit a parse tree produced by `PaoParser.typeDeclaration`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -64,6 +58,13 @@ export interface PaoVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitTypeRuleDeclaration?: (ctx: TypeRuleDeclarationContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `PaoParser.nameDeclaration`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitNameDeclaration?: (ctx: NameDeclarationContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `PaoParser.domainEventDeclaration`.
@@ -134,6 +135,13 @@ export interface PaoVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitFieldDeclaration?: (ctx: FieldDeclarationContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `PaoParser.newSectionDeclaration`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitNewSectionDeclaration?: (ctx: NewSectionDeclarationContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `PaoParser.ruleList`.

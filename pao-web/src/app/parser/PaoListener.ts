@@ -5,9 +5,9 @@ import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
 
 import { CompilationUnitContext } from "./PaoParser";
 import { SystemNameDeclarationContext } from "./PaoParser";
-import { NameDeclarationContext } from "./PaoParser";
 import { TypeDeclarationContext } from "./PaoParser";
 import { TypeRuleDeclarationContext } from "./PaoParser";
+import { NameDeclarationContext } from "./PaoParser";
 import { DomainEventDeclarationContext } from "./PaoParser";
 import { CommadEventDeclarationContext } from "./PaoParser";
 import { CarrierDeclarationContext } from "./PaoParser";
@@ -18,6 +18,7 @@ import { RoleDeclarationContext } from "./PaoParser";
 import { EnterRuleDeclarationContext } from "./PaoParser";
 import { InputRuleDeclarationContext } from "./PaoParser";
 import { FieldDeclarationContext } from "./PaoParser";
+import { NewSectionDeclarationContext } from "./PaoParser";
 import { RuleListContext } from "./PaoParser";
 import { FieldListContext } from "./PaoParser";
 
@@ -50,17 +51,6 @@ export interface PaoListener extends ParseTreeListener {
 	exitSystemNameDeclaration?: (ctx: SystemNameDeclarationContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `PaoParser.nameDeclaration`.
-	 * @param ctx the parse tree
-	 */
-	enterNameDeclaration?: (ctx: NameDeclarationContext) => void;
-	/**
-	 * Exit a parse tree produced by `PaoParser.nameDeclaration`.
-	 * @param ctx the parse tree
-	 */
-	exitNameDeclaration?: (ctx: NameDeclarationContext) => void;
-
-	/**
 	 * Enter a parse tree produced by `PaoParser.typeDeclaration`.
 	 * @param ctx the parse tree
 	 */
@@ -81,6 +71,17 @@ export interface PaoListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitTypeRuleDeclaration?: (ctx: TypeRuleDeclarationContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `PaoParser.nameDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	enterNameDeclaration?: (ctx: NameDeclarationContext) => void;
+	/**
+	 * Exit a parse tree produced by `PaoParser.nameDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	exitNameDeclaration?: (ctx: NameDeclarationContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `PaoParser.domainEventDeclaration`.
@@ -191,6 +192,17 @@ export interface PaoListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitFieldDeclaration?: (ctx: FieldDeclarationContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `PaoParser.newSectionDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	enterNewSectionDeclaration?: (ctx: NewSectionDeclarationContext) => void;
+	/**
+	 * Exit a parse tree produced by `PaoParser.newSectionDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	exitNewSectionDeclaration?: (ctx: NewSectionDeclarationContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `PaoParser.ruleList`.

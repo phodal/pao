@@ -18,6 +18,7 @@ typeRuleDeclaration
     | schedulerDeclaration
     | roleDeclaration
     | fieldDeclaration
+    | newSectionDeclaration
     ;
 
 nameDeclaration: NAME COLON IDENTIFIER;
@@ -32,6 +33,8 @@ roleDeclaration: ROLE COLON IDENTIFIER;
 enterRuleDeclaration: ENTER_RULE COLON (IDENTIFIER | ruleList);
 inputRuleDeclaration: INPUT_RULE COLON (IDENTIFIER | ruleList);
 fieldDeclaration: FIELD COLON fieldList;
+
+newSectionDeclaration: NEWSECTION;
 
 ruleList
     : IDENTIFIER (',' WS? IDENTIFIER)*
@@ -58,6 +61,7 @@ LBRACK: '[';
 RBRACK: ']';
 COMMA: ',' | '，';
 
+NEWSECTION:             '\n\n';
 WS:                 [ \t\r\n\u000C]+ -> channel(HIDDEN);
 COMMENT:            '/*' .*? '*/'    -> channel(HIDDEN);
 LINE_COMMENT:       '//' ~[\r\n]*    -> channel(HIDDEN);
