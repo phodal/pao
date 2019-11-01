@@ -29,6 +29,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
 字段: [
 名称: Phodal
 ]`;
+  private parseResult: PaoModel;
 
   ngOnInit() {
     this.renderGraph()
@@ -44,7 +45,8 @@ export class EditorComponent implements OnInit, AfterViewInit {
 
     const listener = new PaoGrammarListener();
     listener.onFinish(() => {
-      that.graph = JSON.stringify(listener.getParseResult(), null, 4);
+      this.parseResult = listener.getParseResult();
+      that.graph = JSON.stringify(parseResult, null, 4);
     });
     ParseTreeWalker.DEFAULT.walk(listener as ParseTreeListener, tree);
   }

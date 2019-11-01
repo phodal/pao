@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {Rect, Svg, SVG} from '@svgdotjs/svg.js';
 import '@svgdotjs/svg.draggable.js'
 import {CONSTANTS, DOMAIN_COLORS} from "../constant";
@@ -9,6 +9,7 @@ import {CONSTANTS, DOMAIN_COLORS} from "../constant";
   styleUrls: ['./dcanvas.component.less']
 })
 export class DcanvasComponent implements OnInit, AfterViewInit {
+  @Input()
   data = {
     "name": "庖丁解牛系统",
     "objects": [
