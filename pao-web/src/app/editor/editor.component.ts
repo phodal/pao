@@ -12,6 +12,7 @@ import {PaoGrammarListener} from "./PaoGrammarListener";
 })
 export class EditorComponent implements OnInit, AfterViewInit {
   editorOptions = {theme: 'vs-dark', language: 'javascript'};
+  graph = '';
   code: any = `
 系统名称:庖丁解牛系统
 
@@ -34,6 +35,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
   }
 
   renderGraph() {
+    var that = this;
     let inputStream = CharStreams.fromString(this.code);
     let lexer = new PaoLexer(inputStream);
     let tokenStream = new CommonTokenStream(lexer);
@@ -42,8 +44,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
 
     const listener = new PaoGrammarListener();
     listener.onFinish(() => {
-      let result = listener.getParseResult();
-      console.log(result);
+      that.graph = JSON.stringify(listener.getParseResult(), null, 4);
     });
     ParseTreeWalker.DEFAULT.walk(listener as ParseTreeListener, tree);
   }
