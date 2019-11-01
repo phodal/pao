@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { EditorComponent } from './editor/editor.component';
 import { MonacoEditorModule } from '@materia-ui/ngx-monaco-editor';
 import { FormsModule } from "@angular/forms";
+import { DcanvasComponent } from './dcanvas/dcanvas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EditorComponent
+    EditorComponent,
+    DcanvasComponent
   ],
   imports: [
     BrowserModule,

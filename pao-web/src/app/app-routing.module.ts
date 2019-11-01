@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {EditorComponent} from "./editor/editor.component";
+import { EditorComponent } from "./editor/editor.component";
+import { DcanvasComponent } from "./dcanvas/dcanvas.component";
 
 
 const routes: Routes = [
-  { path: 'editor', component: EditorComponent }
+  { path: 'editor', component: EditorComponent },
+  { path: 'dcanvas', component: DcanvasComponent }
 ];
 
 @NgModule({
