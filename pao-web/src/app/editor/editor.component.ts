@@ -46,7 +46,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
     const listener = new PaoGrammarListener();
     listener.onFinish(() => {
       this.parseResult = listener.getParseResult();
-      that.graph = JSON.stringify(parseResult, null, 4);
+      that.graph = JSON.stringify(this.parseResult, null, 4);
     });
     ParseTreeWalker.DEFAULT.walk(listener as ParseTreeListener, tree);
   }
