@@ -37,7 +37,7 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
 
 
   private drawTree() {
-    var draw = SVG().addTo('#drawing');
+    var draw = SVG().addTo('#drawing').size(3840, 2180);
     var rect = draw.rect(100, 100).fill('#f06').move(20, 20)
 
     rect.draggable();
