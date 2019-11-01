@@ -1,10 +1,11 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {PaoLexer} from "../parser/PaoLexer";
 import {PaoParser} from "../parser/PaoParser";
 import {CharStreams, CommonTokenStream} from "antlr4ts";
 import {ParseTreeListener, ParseTreeWalker} from "antlr4ts/tree";
 import {PaoGrammarListener} from "./PaoGrammarListener";
 import Mousetrap from "mousetrap";
+import {MonacoEditorComponent} from "@materia-ui/ngx-monaco-editor";
 
 @Component({
   selector: 'app-editor',
@@ -31,10 +32,10 @@ export class EditorComponent implements OnInit, AfterViewInit {
 名称: Phodal
 ]`;
   private parseResult: PaoModel;
+  @ViewChild('editorComponent', null) editorElement: MonacoEditorComponent;
 
   ngOnInit() {
     this.renderGraph()
-    this.bindKeys()
   }
 
   bindKeys() {
@@ -56,7 +57,6 @@ export class EditorComponent implements OnInit, AfterViewInit {
     const listener = new PaoGrammarListener();
     listener.onFinish(() => {
       that.parseResult = listener.getParseResult();
-      that.graph = JSON.stringify(this.parseResult, null, 4);
     });
     ParseTreeWalker.DEFAULT.walk(listener as ParseTreeListener, tree);
   }
@@ -64,6 +64,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     const that = this;
     setTimeout(() => {
+      that.bindKeys();
       that.configEditor();
     }, 500)
   }
@@ -138,5 +139,10 @@ export class EditorComponent implements OnInit, AfterViewInit {
     var model = (window as any).monaco.editor.getModels()[0];
     monaco.editor.setModelLanguage(model, "pao");
     monaco.editor.setTheme('paoTheme');
+
+    const that = this;
+    this.editorElement.editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S, function() {
+      that.renderGraph();
+    }, "");
   }
 }

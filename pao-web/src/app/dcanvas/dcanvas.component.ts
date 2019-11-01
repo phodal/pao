@@ -51,8 +51,12 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
 
 
   private drawTree() {
-    SVG().clear();
+    if (this.draw) {
+      this.draw.remove();
+    }
+
     this.draw = SVG().addTo('#drawing').size(3840, 2180);
+
 
     let initPosition = {x: 20, y: 20};
     var basePosition: NormalPosition = initPosition;
@@ -99,7 +103,8 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     }
     var textEl = draw.text(text);
     console.log(textEl);
-    textEl.move(commandRect.x() + 20, commandRect.y() + 20).font({fill: '#f06', family: 'Inconsolata'})
+    textEl.move(commandRect.x() + 20, commandRect.y() + 20)
+      .font({fill: '#000', family: 'Inconsolata', size: '20'});
     return textEl;
   }
 }
