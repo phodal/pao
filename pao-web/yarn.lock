@@ -891,6 +891,18 @@
     semver "6.3.0"
     semver-intersect "1.4.0"
 
+"@svgdotjs/svg.draggable.js@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@svgdotjs/svg.draggable.js/-/svg.draggable.js-3.0.2.tgz#a8d935ce495a40ab575e8bc11406ae61ebb4f455"
+  integrity sha512-yqCJe/w1q3IK51zRiqB42rsvQHyX5oqg/Eck02TDRhRv+pQ7sSHJfdyljiGkqoFW4i/1sIpnqYmiLDeM12Nhsw==
+  dependencies:
+    "@svgdotjs/svg.js" "^3.0.10"
+
+"@svgdotjs/svg.js@^3.0.10", "@svgdotjs/svg.js@^3.0.14":
+  version "3.0.14"
+  resolved "https://registry.yarnpkg.com/@svgdotjs/svg.js/-/svg.js-3.0.14.tgz#4f26e1bb83616783921bacd644cadd83bd2040c8"
+  integrity sha512-dOqCYNVuuVn5xDeViW/SmbreQ32QobM8YytVMtQGjRciIzRGD/mSwfXF3mfD3YyzlLYxFS43SAW3wZIj8x0ugA==
+
 "@types/events@*":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
