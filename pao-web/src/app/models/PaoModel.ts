@@ -8,7 +8,7 @@ interface DomainObject {
   eventName: string;
   commandName: string;
   rule: string[];
-  concept: string;
+  conceptName: string;
   comment?: string;
   externalSystem?: string;
   scheduler?: string;

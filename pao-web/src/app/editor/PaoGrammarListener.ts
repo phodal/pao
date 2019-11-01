@@ -24,7 +24,7 @@ export class PaoGrammarListener implements PaoListener {
       eventName: "",
       commandName: "",
       rule: [],
-      concept: ""
+      conceptName: ""
     };
   }
 
@@ -45,7 +45,7 @@ export class PaoGrammarListener implements PaoListener {
   }
 
   enterConceptDeclaration (ctx: ConceptDeclarationContext) {
-    this.currentObject.concept = ctx.IDENTIFIER().text;
+    this.currentObject.conceptName = ctx.IDENTIFIER().text;
   }
 
   enterCommentTextDeclaration (ctx: CommentTextDeclarationContext) {
