@@ -1,45 +1,44 @@
 grammar Pao;
 
-modifier
-    : NAME
-    | DOMAIN_EVENT
-    | COMMAND
-    | CARRIER
-    | ENTER_RULE
-    | INPUT_RULE
-    | COMMENT_TEXT
-    | EXT_SYSTEM
-    | SCHEDULER
-    | ROLE
-    ;
-
 compilationUnit: nameDeclaration typeDeclaration* EOF;
 
 nameDeclaration
-    : modifier COLON IDENTIFIER
+    : NAME COLON IDENTIFIER
     ;
 
-typeDeclaration
-    : nameDeclaration
-    | typeRuleDeclaration (typeRuleDeclaration)*
+typeDeclaration: typeRuleDeclaration (typeRuleDeclaration)*;
+
+typeRuleDeclaration
+    : domainEventDeclaration
+    | carrierDeclaration
+    | commadEventDeclaration
+    | enterRuleDeclaration
+    | inputRuleDeclaration
+    | commentTextDeclaration
+    | extSystemDeclaration
+    | schedulerDeclaration
+    | roleDeclaration
+    | fieldDeclaration
     ;
 
-typeRuleDeclaration: modifier COLON (IDENTIFIER | formalParameterList | fieldParameters) ;
+domainEventDeclaration: DOMAIN_EVENT COLON IDENTIFIER;
+commadEventDeclaration: COMMAND COLON IDENTIFIER;
+carrierDeclaration: CARRIER COLON IDENTIFIER;
+commentTextDeclaration: COMMENT_TEXT COLON IDENTIFIER;
+extSystemDeclaration: EXT_SYSTEM COLON IDENTIFIER;
+schedulerDeclaration: SCHEDULER COLON IDENTIFIER;
+roleDeclaration: ROLE COLON IDENTIFIER;
 
-qualifiedName
-    : IDENTIFIER
-    ;
+enterRuleDeclaration: ENTER_RULE COLON (IDENTIFIER | ruleList);
+inputRuleDeclaration: INPUT_RULE COLON (IDENTIFIER | ruleList);
+fieldDeclaration: FIELD COLON fieldList;
 
-formalParameterList
-    : qualifiedName (',' qualifiedName)*
-    ;
-
-fieldParameters
-    : FIELD COLON fieldList
+ruleList
+    : IDENTIFIER (',' WS? IDENTIFIER)*
     ;
 
 fieldList
-    : IDENTIFIER (',' IDENTIFIER)*
+    : LBRACK typeRuleDeclaration* RBRACK
     ;
 
 COLON: ':' | '：';
@@ -56,6 +55,7 @@ SCHEDULER: '定时任务' ;
 ROLE: '角色' ;
 LBRACK: '[';
 RBRACK: ']';
+COMMA: ',' | '，';
 
 WS:                 [ \t\r\n\u000C]+ -> channel(HIDDEN);
 COMMENT:            '/*' .*? '*/'    -> channel(HIDDEN);

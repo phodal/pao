@@ -1,4 +1,4 @@
-// Generated from ../ts/Pao.g4 by ANTLR 4.7.3-SNAPSHOT
+// Generated from Pao.g4 by ANTLR 4.7.3-SNAPSHOT
 
 
 import { ATN } from "antlr4ts/atn/ATN";
@@ -43,23 +43,34 @@ export class PaoParser extends Parser {
 	public static readonly ROLE = 13;
 	public static readonly LBRACK = 14;
 	public static readonly RBRACK = 15;
-	public static readonly WS = 16;
-	public static readonly COMMENT = 17;
-	public static readonly LINE_COMMENT = 18;
-	public static readonly IDENTIFIER = 19;
-	public static readonly RULE_modifier = 0;
-	public static readonly RULE_compilationUnit = 1;
-	public static readonly RULE_nameDeclaration = 2;
-	public static readonly RULE_typeDeclaration = 3;
-	public static readonly RULE_typeRuleDeclaration = 4;
-	public static readonly RULE_qualifiedName = 5;
-	public static readonly RULE_formalParameterList = 6;
-	public static readonly RULE_fieldParameters = 7;
-	public static readonly RULE_fieldList = 8;
+	public static readonly COMMA = 16;
+	public static readonly WS = 17;
+	public static readonly COMMENT = 18;
+	public static readonly LINE_COMMENT = 19;
+	public static readonly IDENTIFIER = 20;
+	public static readonly RULE_compilationUnit = 0;
+	public static readonly RULE_nameDeclaration = 1;
+	public static readonly RULE_typeDeclaration = 2;
+	public static readonly RULE_typeRuleDeclaration = 3;
+	public static readonly RULE_domainEventDeclaration = 4;
+	public static readonly RULE_commadEventDeclaration = 5;
+	public static readonly RULE_carrierDeclaration = 6;
+	public static readonly RULE_commentTextDeclaration = 7;
+	public static readonly RULE_extSystemDeclaration = 8;
+	public static readonly RULE_schedulerDeclaration = 9;
+	public static readonly RULE_roleDeclaration = 10;
+	public static readonly RULE_enterRuleDeclaration = 11;
+	public static readonly RULE_inputRuleDeclaration = 12;
+	public static readonly RULE_fieldDeclaration = 13;
+	public static readonly RULE_ruleList = 14;
+	public static readonly RULE_fieldList = 15;
 	// tslint:disable:no-trailing-whitespace
 	public static readonly ruleNames: string[] = [
-		"modifier", "compilationUnit", "nameDeclaration", "typeDeclaration", "typeRuleDeclaration", 
-		"qualifiedName", "formalParameterList", "fieldParameters", "fieldList",
+		"compilationUnit", "nameDeclaration", "typeDeclaration", "typeRuleDeclaration", 
+		"domainEventDeclaration", "commadEventDeclaration", "carrierDeclaration", 
+		"commentTextDeclaration", "extSystemDeclaration", "schedulerDeclaration", 
+		"roleDeclaration", "enterRuleDeclaration", "inputRuleDeclaration", "fieldDeclaration", 
+		"ruleList", "fieldList",
 	];
 
 	private static readonly _LITERAL_NAMES: Array<string | undefined> = [
@@ -71,7 +82,8 @@ export class PaoParser extends Parser {
 	private static readonly _SYMBOLIC_NAMES: Array<string | undefined> = [
 		undefined, undefined, "COLON", "NAME", "DOMAIN_EVENT", "COMMAND", "CARRIER", 
 		"ENTER_RULE", "INPUT_RULE", "FIELD", "COMMENT_TEXT", "EXT_SYSTEM", "SCHEDULER", 
-		"ROLE", "LBRACK", "RBRACK", "WS", "COMMENT", "LINE_COMMENT", "IDENTIFIER",
+		"ROLE", "LBRACK", "RBRACK", "COMMA", "WS", "COMMENT", "LINE_COMMENT", 
+		"IDENTIFIER",
 	];
 	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(PaoParser._LITERAL_NAMES, PaoParser._SYMBOLIC_NAMES, []);
 
@@ -96,66 +108,30 @@ export class PaoParser extends Parser {
 		this._interp = new ParserATNSimulator(PaoParser._ATN, this);
 	}
 	// @RuleVersion(0)
-	public modifier(): ModifierContext {
-		let _localctx: ModifierContext = new ModifierContext(this._ctx, this.state);
-		this.enterRule(_localctx, 0, PaoParser.RULE_modifier);
-		let _la: number;
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 18;
-			_la = this._input.LA(1);
-			if (!((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << PaoParser.NAME) | (1 << PaoParser.DOMAIN_EVENT) | (1 << PaoParser.COMMAND) | (1 << PaoParser.CARRIER) | (1 << PaoParser.ENTER_RULE) | (1 << PaoParser.INPUT_RULE) | (1 << PaoParser.COMMENT_TEXT) | (1 << PaoParser.EXT_SYSTEM) | (1 << PaoParser.SCHEDULER) | (1 << PaoParser.ROLE))) !== 0))) {
-			this._errHandler.recoverInline(this);
-			} else {
-				if (this._input.LA(1) === Token.EOF) {
-					this.matchedEOF = true;
-				}
-
-				this._errHandler.reportMatch(this);
-				this.consume();
-			}
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
 	public compilationUnit(): CompilationUnitContext {
 		let _localctx: CompilationUnitContext = new CompilationUnitContext(this._ctx, this.state);
-		this.enterRule(_localctx, 2, PaoParser.RULE_compilationUnit);
+		this.enterRule(_localctx, 0, PaoParser.RULE_compilationUnit);
 		let _la: number;
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 20;
+			this.state = 32;
 			this.nameDeclaration();
-			this.state = 24;
+			this.state = 36;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << PaoParser.NAME) | (1 << PaoParser.DOMAIN_EVENT) | (1 << PaoParser.COMMAND) | (1 << PaoParser.CARRIER) | (1 << PaoParser.ENTER_RULE) | (1 << PaoParser.INPUT_RULE) | (1 << PaoParser.COMMENT_TEXT) | (1 << PaoParser.EXT_SYSTEM) | (1 << PaoParser.SCHEDULER) | (1 << PaoParser.ROLE))) !== 0)) {
+			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << PaoParser.DOMAIN_EVENT) | (1 << PaoParser.COMMAND) | (1 << PaoParser.CARRIER) | (1 << PaoParser.ENTER_RULE) | (1 << PaoParser.INPUT_RULE) | (1 << PaoParser.FIELD) | (1 << PaoParser.COMMENT_TEXT) | (1 << PaoParser.EXT_SYSTEM) | (1 << PaoParser.SCHEDULER) | (1 << PaoParser.ROLE))) !== 0)) {
 				{
 				{
-				this.state = 21;
+				this.state = 33;
 				this.typeDeclaration();
 				}
 				}
-				this.state = 26;
+				this.state = 38;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
-			this.state = 27;
+			this.state = 39;
 			this.match(PaoParser.EOF);
 			}
 		}
@@ -176,15 +152,15 @@ export class PaoParser extends Parser {
 	// @RuleVersion(0)
 	public nameDeclaration(): NameDeclarationContext {
 		let _localctx: NameDeclarationContext = new NameDeclarationContext(this._ctx, this.state);
-		this.enterRule(_localctx, 4, PaoParser.RULE_nameDeclaration);
+		this.enterRule(_localctx, 2, PaoParser.RULE_nameDeclaration);
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 29;
-			this.modifier();
-			this.state = 30;
+			this.state = 41;
+			this.match(PaoParser.NAME);
+			this.state = 42;
 			this.match(PaoParser.COLON);
-			this.state = 31;
+			this.state = 43;
 			this.match(PaoParser.IDENTIFIER);
 			}
 		}
@@ -205,43 +181,29 @@ export class PaoParser extends Parser {
 	// @RuleVersion(0)
 	public typeDeclaration(): TypeDeclarationContext {
 		let _localctx: TypeDeclarationContext = new TypeDeclarationContext(this._ctx, this.state);
-		this.enterRule(_localctx, 6, PaoParser.RULE_typeDeclaration);
+		this.enterRule(_localctx, 4, PaoParser.RULE_typeDeclaration);
 		try {
 			let _alt: number;
-			this.state = 41;
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 45;
+			this.typeRuleDeclaration();
+			this.state = 49;
 			this._errHandler.sync(this);
-			switch ( this.interpreter.adaptivePredict(this._input, 2, this._ctx) ) {
-			case 1:
-				this.enterOuterAlt(_localctx, 1);
-				{
-				this.state = 33;
-				this.nameDeclaration();
+			_alt = this.interpreter.adaptivePredict(this._input, 1, this._ctx);
+			while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
+				if (_alt === 1) {
+					{
+					{
+					this.state = 46;
+					this.typeRuleDeclaration();
+					}
+					}
 				}
-				break;
-
-			case 2:
-				this.enterOuterAlt(_localctx, 2);
-				{
-				this.state = 34;
-				this.typeRuleDeclaration();
-				this.state = 38;
+				this.state = 51;
 				this._errHandler.sync(this);
 				_alt = this.interpreter.adaptivePredict(this._input, 1, this._ctx);
-				while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
-					if (_alt === 1) {
-						{
-						{
-						this.state = 35;
-						this.typeRuleDeclaration();
-						}
-						}
-					}
-					this.state = 40;
-					this._errHandler.sync(this);
-					_alt = this.interpreter.adaptivePredict(this._input, 1, this._ctx);
-				}
-				}
-				break;
+			}
 			}
 		}
 		catch (re) {
@@ -261,38 +223,83 @@ export class PaoParser extends Parser {
 	// @RuleVersion(0)
 	public typeRuleDeclaration(): TypeRuleDeclarationContext {
 		let _localctx: TypeRuleDeclarationContext = new TypeRuleDeclarationContext(this._ctx, this.state);
-		this.enterRule(_localctx, 8, PaoParser.RULE_typeRuleDeclaration);
+		this.enterRule(_localctx, 6, PaoParser.RULE_typeRuleDeclaration);
 		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 43;
-			this.modifier();
-			this.state = 44;
-			this.match(PaoParser.COLON);
-			this.state = 48;
+			this.state = 62;
 			this._errHandler.sync(this);
-			switch ( this.interpreter.adaptivePredict(this._input, 3, this._ctx) ) {
-			case 1:
+			switch (this._input.LA(1)) {
+			case PaoParser.DOMAIN_EVENT:
+				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 45;
-				this.match(PaoParser.IDENTIFIER);
+				this.state = 52;
+				this.domainEventDeclaration();
 				}
 				break;
-
-			case 2:
+			case PaoParser.CARRIER:
+				this.enterOuterAlt(_localctx, 2);
 				{
-				this.state = 46;
-				this.formalParameterList();
+				this.state = 53;
+				this.carrierDeclaration();
 				}
 				break;
-
-			case 3:
+			case PaoParser.COMMAND:
+				this.enterOuterAlt(_localctx, 3);
 				{
-				this.state = 47;
-				this.fieldParameters();
+				this.state = 54;
+				this.commadEventDeclaration();
 				}
 				break;
-			}
+			case PaoParser.ENTER_RULE:
+				this.enterOuterAlt(_localctx, 4);
+				{
+				this.state = 55;
+				this.enterRuleDeclaration();
+				}
+				break;
+			case PaoParser.INPUT_RULE:
+				this.enterOuterAlt(_localctx, 5);
+				{
+				this.state = 56;
+				this.inputRuleDeclaration();
+				}
+				break;
+			case PaoParser.COMMENT_TEXT:
+				this.enterOuterAlt(_localctx, 6);
+				{
+				this.state = 57;
+				this.commentTextDeclaration();
+				}
+				break;
+			case PaoParser.EXT_SYSTEM:
+				this.enterOuterAlt(_localctx, 7);
+				{
+				this.state = 58;
+				this.extSystemDeclaration();
+				}
+				break;
+			case PaoParser.SCHEDULER:
+				this.enterOuterAlt(_localctx, 8);
+				{
+				this.state = 59;
+				this.schedulerDeclaration();
+				}
+				break;
+			case PaoParser.ROLE:
+				this.enterOuterAlt(_localctx, 9);
+				{
+				this.state = 60;
+				this.roleDeclaration();
+				}
+				break;
+			case PaoParser.FIELD:
+				this.enterOuterAlt(_localctx, 10);
+				{
+				this.state = 61;
+				this.fieldDeclaration();
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (re) {
@@ -310,13 +317,17 @@ export class PaoParser extends Parser {
 		return _localctx;
 	}
 	// @RuleVersion(0)
-	public qualifiedName(): QualifiedNameContext {
-		let _localctx: QualifiedNameContext = new QualifiedNameContext(this._ctx, this.state);
-		this.enterRule(_localctx, 10, PaoParser.RULE_qualifiedName);
+	public domainEventDeclaration(): DomainEventDeclarationContext {
+		let _localctx: DomainEventDeclarationContext = new DomainEventDeclarationContext(this._ctx, this.state);
+		this.enterRule(_localctx, 8, PaoParser.RULE_domainEventDeclaration);
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 50;
+			this.state = 64;
+			this.match(PaoParser.DOMAIN_EVENT);
+			this.state = 65;
+			this.match(PaoParser.COLON);
+			this.state = 66;
 			this.match(PaoParser.IDENTIFIER);
 			}
 		}
@@ -335,30 +346,206 @@ export class PaoParser extends Parser {
 		return _localctx;
 	}
 	// @RuleVersion(0)
-	public formalParameterList(): FormalParameterListContext {
-		let _localctx: FormalParameterListContext = new FormalParameterListContext(this._ctx, this.state);
-		this.enterRule(_localctx, 12, PaoParser.RULE_formalParameterList);
-		let _la: number;
+	public commadEventDeclaration(): CommadEventDeclarationContext {
+		let _localctx: CommadEventDeclarationContext = new CommadEventDeclarationContext(this._ctx, this.state);
+		this.enterRule(_localctx, 10, PaoParser.RULE_commadEventDeclaration);
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 52;
-			this.qualifiedName();
-			this.state = 57;
+			this.state = 68;
+			this.match(PaoParser.COMMAND);
+			this.state = 69;
+			this.match(PaoParser.COLON);
+			this.state = 70;
+			this.match(PaoParser.IDENTIFIER);
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public carrierDeclaration(): CarrierDeclarationContext {
+		let _localctx: CarrierDeclarationContext = new CarrierDeclarationContext(this._ctx, this.state);
+		this.enterRule(_localctx, 12, PaoParser.RULE_carrierDeclaration);
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 72;
+			this.match(PaoParser.CARRIER);
+			this.state = 73;
+			this.match(PaoParser.COLON);
+			this.state = 74;
+			this.match(PaoParser.IDENTIFIER);
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public commentTextDeclaration(): CommentTextDeclarationContext {
+		let _localctx: CommentTextDeclarationContext = new CommentTextDeclarationContext(this._ctx, this.state);
+		this.enterRule(_localctx, 14, PaoParser.RULE_commentTextDeclaration);
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 76;
+			this.match(PaoParser.COMMENT_TEXT);
+			this.state = 77;
+			this.match(PaoParser.COLON);
+			this.state = 78;
+			this.match(PaoParser.IDENTIFIER);
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public extSystemDeclaration(): ExtSystemDeclarationContext {
+		let _localctx: ExtSystemDeclarationContext = new ExtSystemDeclarationContext(this._ctx, this.state);
+		this.enterRule(_localctx, 16, PaoParser.RULE_extSystemDeclaration);
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 80;
+			this.match(PaoParser.EXT_SYSTEM);
+			this.state = 81;
+			this.match(PaoParser.COLON);
+			this.state = 82;
+			this.match(PaoParser.IDENTIFIER);
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public schedulerDeclaration(): SchedulerDeclarationContext {
+		let _localctx: SchedulerDeclarationContext = new SchedulerDeclarationContext(this._ctx, this.state);
+		this.enterRule(_localctx, 18, PaoParser.RULE_schedulerDeclaration);
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 84;
+			this.match(PaoParser.SCHEDULER);
+			this.state = 85;
+			this.match(PaoParser.COLON);
+			this.state = 86;
+			this.match(PaoParser.IDENTIFIER);
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public roleDeclaration(): RoleDeclarationContext {
+		let _localctx: RoleDeclarationContext = new RoleDeclarationContext(this._ctx, this.state);
+		this.enterRule(_localctx, 20, PaoParser.RULE_roleDeclaration);
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 88;
+			this.match(PaoParser.ROLE);
+			this.state = 89;
+			this.match(PaoParser.COLON);
+			this.state = 90;
+			this.match(PaoParser.IDENTIFIER);
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public enterRuleDeclaration(): EnterRuleDeclarationContext {
+		let _localctx: EnterRuleDeclarationContext = new EnterRuleDeclarationContext(this._ctx, this.state);
+		this.enterRule(_localctx, 22, PaoParser.RULE_enterRuleDeclaration);
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 92;
+			this.match(PaoParser.ENTER_RULE);
+			this.state = 93;
+			this.match(PaoParser.COLON);
+			this.state = 96;
 			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			while (_la === PaoParser.T__0) {
+			switch ( this.interpreter.adaptivePredict(this._input, 3, this._ctx) ) {
+			case 1:
 				{
+				this.state = 94;
+				this.match(PaoParser.IDENTIFIER);
+				}
+				break;
+
+			case 2:
 				{
-				this.state = 53;
-				this.match(PaoParser.T__0);
-				this.state = 54;
-				this.qualifiedName();
+				this.state = 95;
+				this.ruleList();
 				}
-				}
-				this.state = 59;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
+				break;
 			}
 			}
 		}
@@ -377,18 +564,114 @@ export class PaoParser extends Parser {
 		return _localctx;
 	}
 	// @RuleVersion(0)
-	public fieldParameters(): FieldParametersContext {
-		let _localctx: FieldParametersContext = new FieldParametersContext(this._ctx, this.state);
-		this.enterRule(_localctx, 14, PaoParser.RULE_fieldParameters);
+	public inputRuleDeclaration(): InputRuleDeclarationContext {
+		let _localctx: InputRuleDeclarationContext = new InputRuleDeclarationContext(this._ctx, this.state);
+		this.enterRule(_localctx, 24, PaoParser.RULE_inputRuleDeclaration);
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 60;
-			this.match(PaoParser.FIELD);
-			this.state = 61;
+			this.state = 98;
+			this.match(PaoParser.INPUT_RULE);
+			this.state = 99;
 			this.match(PaoParser.COLON);
-			this.state = 62;
+			this.state = 102;
+			this._errHandler.sync(this);
+			switch ( this.interpreter.adaptivePredict(this._input, 4, this._ctx) ) {
+			case 1:
+				{
+				this.state = 100;
+				this.match(PaoParser.IDENTIFIER);
+				}
+				break;
+
+			case 2:
+				{
+				this.state = 101;
+				this.ruleList();
+				}
+				break;
+			}
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public fieldDeclaration(): FieldDeclarationContext {
+		let _localctx: FieldDeclarationContext = new FieldDeclarationContext(this._ctx, this.state);
+		this.enterRule(_localctx, 26, PaoParser.RULE_fieldDeclaration);
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 104;
+			this.match(PaoParser.FIELD);
+			this.state = 105;
+			this.match(PaoParser.COLON);
+			this.state = 106;
 			this.fieldList();
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public ruleList(): RuleListContext {
+		let _localctx: RuleListContext = new RuleListContext(this._ctx, this.state);
+		this.enterRule(_localctx, 28, PaoParser.RULE_ruleList);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 108;
+			this.match(PaoParser.IDENTIFIER);
+			this.state = 116;
+			this._errHandler.sync(this);
+			_la = this._input.LA(1);
+			while (_la === PaoParser.T__0) {
+				{
+				{
+				this.state = 109;
+				this.match(PaoParser.T__0);
+				this.state = 111;
+				this._errHandler.sync(this);
+				_la = this._input.LA(1);
+				if (_la === PaoParser.WS) {
+					{
+					this.state = 110;
+					this.match(PaoParser.WS);
+					}
+				}
+
+				this.state = 113;
+				this.match(PaoParser.IDENTIFIER);
+				}
+				}
+				this.state = 118;
+				this._errHandler.sync(this);
+				_la = this._input.LA(1);
+			}
 			}
 		}
 		catch (re) {
@@ -408,29 +691,29 @@ export class PaoParser extends Parser {
 	// @RuleVersion(0)
 	public fieldList(): FieldListContext {
 		let _localctx: FieldListContext = new FieldListContext(this._ctx, this.state);
-		this.enterRule(_localctx, 16, PaoParser.RULE_fieldList);
+		this.enterRule(_localctx, 30, PaoParser.RULE_fieldList);
 		let _la: number;
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 64;
-			this.match(PaoParser.IDENTIFIER);
-			this.state = 69;
+			this.state = 119;
+			this.match(PaoParser.LBRACK);
+			this.state = 123;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (_la === PaoParser.T__0) {
+			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << PaoParser.DOMAIN_EVENT) | (1 << PaoParser.COMMAND) | (1 << PaoParser.CARRIER) | (1 << PaoParser.ENTER_RULE) | (1 << PaoParser.INPUT_RULE) | (1 << PaoParser.FIELD) | (1 << PaoParser.COMMENT_TEXT) | (1 << PaoParser.EXT_SYSTEM) | (1 << PaoParser.SCHEDULER) | (1 << PaoParser.ROLE))) !== 0)) {
 				{
 				{
-				this.state = 65;
-				this.match(PaoParser.T__0);
-				this.state = 66;
-				this.match(PaoParser.IDENTIFIER);
+				this.state = 120;
+				this.typeRuleDeclaration();
 				}
 				}
-				this.state = 71;
+				this.state = 125;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
+			this.state = 126;
+			this.match(PaoParser.RBRACK);
 			}
 		}
 		catch (re) {
@@ -449,36 +732,56 @@ export class PaoParser extends Parser {
 	}
 
 	public static readonly _serializedATN: string =
-		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x03\x15K\x04\x02" +
+		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x03\x16\x83\x04\x02" +
 		"\t\x02\x04\x03\t\x03\x04\x04\t\x04\x04\x05\t\x05\x04\x06\t\x06\x04\x07" +
-		"\t\x07\x04\b\t\b\x04\t\t\t\x04\n\t\n\x03\x02\x03\x02\x03\x03\x03\x03\x07" +
-		"\x03\x19\n\x03\f\x03\x0E\x03\x1C\v\x03\x03\x03\x03\x03\x03\x04\x03\x04" +
-		"\x03\x04\x03\x04\x03\x05\x03\x05\x03\x05\x07\x05\'\n\x05\f\x05\x0E\x05" +
-		"*\v\x05\x05\x05,\n\x05\x03\x06\x03\x06\x03\x06\x03\x06\x03\x06\x05\x06" +
-		"3\n\x06\x03\x07\x03\x07\x03\b\x03\b\x03\b\x07\b:\n\b\f\b\x0E\b=\v\b\x03" +
-		"\t\x03\t\x03\t\x03\t\x03\n\x03\n\x03\n\x07\nF\n\n\f\n\x0E\nI\v\n\x03\n" +
-		"\x02\x02\x02\v\x02\x02\x04\x02\x06\x02\b\x02\n\x02\f\x02\x0E\x02\x10\x02" +
-		"\x12\x02\x02\x03\x04\x02\x05\n\f\x0F\x02H\x02\x14\x03\x02\x02\x02\x04" +
-		"\x16\x03\x02\x02\x02\x06\x1F\x03\x02\x02\x02\b+\x03\x02\x02\x02\n-\x03" +
-		"\x02\x02\x02\f4\x03\x02\x02\x02\x0E6\x03\x02\x02\x02\x10>\x03\x02\x02" +
-		"\x02\x12B\x03\x02\x02\x02\x14\x15\t\x02\x02\x02\x15\x03\x03\x02\x02\x02" +
-		"\x16\x1A\x05\x06\x04\x02\x17\x19\x05\b\x05\x02\x18\x17\x03\x02\x02\x02" +
-		"\x19\x1C\x03\x02\x02\x02\x1A\x18\x03\x02\x02\x02\x1A\x1B\x03\x02\x02\x02" +
-		"\x1B\x1D\x03\x02\x02\x02\x1C\x1A\x03\x02\x02\x02\x1D\x1E\x07\x02\x02\x03" +
-		"\x1E\x05\x03\x02\x02\x02\x1F \x05\x02\x02\x02 !\x07\x04\x02\x02!\"\x07" +
-		"\x15\x02\x02\"\x07\x03\x02\x02\x02#,\x05\x06\x04\x02$(\x05\n\x06\x02%" +
-		"\'\x05\n\x06\x02&%\x03\x02\x02\x02\'*\x03\x02\x02\x02(&\x03\x02\x02\x02" +
-		"()\x03\x02\x02\x02),\x03\x02\x02\x02*(\x03\x02\x02\x02+#\x03\x02\x02\x02" +
-		"+$\x03\x02\x02\x02,\t\x03\x02\x02\x02-.\x05\x02\x02\x02.2\x07\x04\x02" +
-		"\x02/3\x07\x15\x02\x0203\x05\x0E\b\x0213\x05\x10\t\x022/\x03\x02\x02\x02" +
-		"20\x03\x02\x02\x0221\x03\x02\x02\x023\v\x03\x02\x02\x0245\x07\x15\x02" +
-		"\x025\r\x03\x02\x02\x026;\x05\f\x07\x0278\x07\x03\x02\x028:\x05\f\x07" +
-		"\x0297\x03\x02\x02\x02:=\x03\x02\x02\x02;9\x03\x02\x02\x02;<\x03\x02\x02" +
-		"\x02<\x0F\x03\x02\x02\x02=;\x03\x02\x02\x02>?\x07\v\x02\x02?@\x07\x04" +
-		"\x02\x02@A\x05\x12\n\x02A\x11\x03\x02\x02\x02BG\x07\x15\x02\x02CD\x07" +
-		"\x03\x02\x02DF\x07\x15\x02\x02EC\x03\x02\x02\x02FI\x03\x02\x02\x02GE\x03" +
-		"\x02\x02\x02GH\x03\x02\x02\x02H\x13\x03\x02\x02\x02IG\x03\x02\x02\x02" +
-		"\b\x1A(+2;G";
+		"\t\x07\x04\b\t\b\x04\t\t\t\x04\n\t\n\x04\v\t\v\x04\f\t\f\x04\r\t\r\x04" +
+		"\x0E\t\x0E\x04\x0F\t\x0F\x04\x10\t\x10\x04\x11\t\x11\x03\x02\x03\x02\x07" +
+		"\x02%\n\x02\f\x02\x0E\x02(\v\x02\x03\x02\x03\x02\x03\x03\x03\x03\x03\x03" +
+		"\x03\x03\x03\x04\x03\x04\x07\x042\n\x04\f\x04\x0E\x045\v\x04\x03\x05\x03" +
+		"\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x05" +
+		"\x05A\n\x05\x03\x06\x03\x06\x03\x06\x03\x06\x03\x07\x03\x07\x03\x07\x03" +
+		"\x07\x03\b\x03\b\x03\b\x03\b\x03\t\x03\t\x03\t\x03\t\x03\n\x03\n\x03\n" +
+		"\x03\n\x03\v\x03\v\x03\v\x03\v\x03\f\x03\f\x03\f\x03\f\x03\r\x03\r\x03" +
+		"\r\x03\r\x05\rc\n\r\x03\x0E\x03\x0E\x03\x0E\x03\x0E\x05\x0Ei\n\x0E\x03" +
+		"\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x10\x03\x10\x03\x10\x05\x10r\n\x10\x03" +
+		"\x10\x07\x10u\n\x10\f\x10\x0E\x10x\v\x10\x03\x11\x03\x11\x07\x11|\n\x11" +
+		"\f\x11\x0E\x11\x7F\v\x11\x03\x11\x03\x11\x03\x11\x02\x02\x02\x12\x02\x02" +
+		"\x04\x02\x06\x02\b\x02\n\x02\f\x02\x0E\x02\x10\x02\x12\x02\x14\x02\x16" +
+		"\x02\x18\x02\x1A\x02\x1C\x02\x1E\x02 \x02\x02\x02\x02\x82\x02\"\x03\x02" +
+		"\x02\x02\x04+\x03\x02\x02\x02\x06/\x03\x02\x02\x02\b@\x03\x02\x02\x02" +
+		"\nB\x03\x02\x02\x02\fF\x03\x02\x02\x02\x0EJ\x03\x02\x02\x02\x10N\x03\x02" +
+		"\x02\x02\x12R\x03\x02\x02\x02\x14V\x03\x02\x02\x02\x16Z\x03\x02\x02\x02" +
+		"\x18^\x03\x02\x02\x02\x1Ad\x03\x02\x02\x02\x1Cj\x03\x02\x02\x02\x1En\x03" +
+		"\x02\x02\x02 y\x03\x02\x02\x02\"&\x05\x04\x03\x02#%\x05\x06\x04\x02$#" +
+		"\x03\x02\x02\x02%(\x03\x02\x02\x02&$\x03\x02\x02\x02&\'\x03\x02\x02\x02" +
+		"\')\x03\x02\x02\x02(&\x03\x02\x02\x02)*\x07\x02\x02\x03*\x03\x03\x02\x02" +
+		"\x02+,\x07\x05\x02\x02,-\x07\x04\x02\x02-.\x07\x16\x02\x02.\x05\x03\x02" +
+		"\x02\x02/3\x05\b\x05\x0202\x05\b\x05\x0210\x03\x02\x02\x0225\x03\x02\x02" +
+		"\x0231\x03\x02\x02\x0234\x03\x02\x02\x024\x07\x03\x02\x02\x0253\x03\x02" +
+		"\x02\x026A\x05\n\x06\x027A\x05\x0E\b\x028A\x05\f\x07\x029A\x05\x18\r\x02" +
+		":A\x05\x1A\x0E\x02;A\x05\x10\t\x02<A\x05\x12\n\x02=A\x05\x14\v\x02>A\x05" +
+		"\x16\f\x02?A\x05\x1C\x0F\x02@6\x03\x02\x02\x02@7\x03\x02\x02\x02@8\x03" +
+		"\x02\x02\x02@9\x03\x02\x02\x02@:\x03\x02\x02\x02@;\x03\x02\x02\x02@<\x03" +
+		"\x02\x02\x02@=\x03\x02\x02\x02@>\x03\x02\x02\x02@?\x03\x02\x02\x02A\t" +
+		"\x03\x02\x02\x02BC\x07\x06\x02\x02CD\x07\x04\x02\x02DE\x07\x16\x02\x02" +
+		"E\v\x03\x02\x02\x02FG\x07\x07\x02\x02GH\x07\x04\x02\x02HI\x07\x16\x02" +
+		"\x02I\r\x03\x02\x02\x02JK\x07\b\x02\x02KL\x07\x04\x02\x02LM\x07\x16\x02" +
+		"\x02M\x0F\x03\x02\x02\x02NO\x07\f\x02\x02OP\x07\x04\x02\x02PQ\x07\x16" +
+		"\x02\x02Q\x11\x03\x02\x02\x02RS\x07\r\x02\x02ST\x07\x04\x02\x02TU\x07" +
+		"\x16\x02\x02U\x13\x03\x02\x02\x02VW\x07\x0E\x02\x02WX\x07\x04\x02\x02" +
+		"XY\x07\x16\x02\x02Y\x15\x03\x02\x02\x02Z[\x07\x0F\x02\x02[\\\x07\x04\x02" +
+		"\x02\\]\x07\x16\x02\x02]\x17\x03\x02\x02\x02^_\x07\t\x02\x02_b\x07\x04" +
+		"\x02\x02`c\x07\x16\x02\x02ac\x05\x1E\x10\x02b`\x03\x02\x02\x02ba\x03\x02" +
+		"\x02\x02c\x19\x03\x02\x02\x02de\x07\n\x02\x02eh\x07\x04\x02\x02fi\x07" +
+		"\x16\x02\x02gi\x05\x1E\x10\x02hf\x03\x02\x02\x02hg\x03\x02\x02\x02i\x1B" +
+		"\x03\x02\x02\x02jk\x07\v\x02\x02kl\x07\x04\x02\x02lm\x05 \x11\x02m\x1D" +
+		"\x03\x02\x02\x02nv\x07\x16\x02\x02oq\x07\x03\x02\x02pr\x07\x13\x02\x02" +
+		"qp\x03\x02\x02\x02qr\x03\x02\x02\x02rs\x03\x02\x02\x02su\x07\x16\x02\x02" +
+		"to\x03\x02\x02\x02ux\x03\x02\x02\x02vt\x03\x02\x02\x02vw\x03\x02\x02\x02" +
+		"w\x1F\x03\x02\x02\x02xv\x03\x02\x02\x02y}\x07\x10\x02\x02z|\x05\b\x05" +
+		"\x02{z\x03\x02\x02\x02|\x7F\x03\x02\x02\x02}{\x03\x02\x02\x02}~\x03\x02" +
+		"\x02\x02~\x80\x03\x02\x02\x02\x7F}\x03\x02\x02\x02\x80\x81\x07\x11\x02" +
+		"\x02\x81!\x03\x02\x02\x02\n&3@bhqv}";
 	public static __ATN: ATN;
 	public static get _ATN(): ATN {
 		if (!PaoParser.__ATN) {
@@ -489,45 +792,6 @@ export class PaoParser extends Parser {
 	}
 
 }
-
-export class ModifierContext extends ParserRuleContext {
-	public NAME(): TerminalNode | undefined { return this.tryGetToken(PaoParser.NAME, 0); }
-	public DOMAIN_EVENT(): TerminalNode | undefined { return this.tryGetToken(PaoParser.DOMAIN_EVENT, 0); }
-	public COMMAND(): TerminalNode | undefined { return this.tryGetToken(PaoParser.COMMAND, 0); }
-	public CARRIER(): TerminalNode | undefined { return this.tryGetToken(PaoParser.CARRIER, 0); }
-	public ENTER_RULE(): TerminalNode | undefined { return this.tryGetToken(PaoParser.ENTER_RULE, 0); }
-	public INPUT_RULE(): TerminalNode | undefined { return this.tryGetToken(PaoParser.INPUT_RULE, 0); }
-	public COMMENT_TEXT(): TerminalNode | undefined { return this.tryGetToken(PaoParser.COMMENT_TEXT, 0); }
-	public EXT_SYSTEM(): TerminalNode | undefined { return this.tryGetToken(PaoParser.EXT_SYSTEM, 0); }
-	public SCHEDULER(): TerminalNode | undefined { return this.tryGetToken(PaoParser.SCHEDULER, 0); }
-	public ROLE(): TerminalNode | undefined { return this.tryGetToken(PaoParser.ROLE, 0); }
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return PaoParser.RULE_modifier; }
-	// @Override
-	public enterRule(listener: PaoListener): void {
-		if (listener.enterModifier) {
-			listener.enterModifier(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: PaoListener): void {
-		if (listener.exitModifier) {
-			listener.exitModifier(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: PaoVisitor<Result>): Result {
-		if (visitor.visitModifier) {
-			return visitor.visitModifier(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
 
 export class CompilationUnitContext extends ParserRuleContext {
 	public nameDeclaration(): NameDeclarationContext {
@@ -572,9 +836,7 @@ export class CompilationUnitContext extends ParserRuleContext {
 
 
 export class NameDeclarationContext extends ParserRuleContext {
-	public modifier(): ModifierContext {
-		return this.getRuleContext(0, ModifierContext);
-	}
+	public NAME(): TerminalNode { return this.getToken(PaoParser.NAME, 0); }
 	public COLON(): TerminalNode { return this.getToken(PaoParser.COLON, 0); }
 	public IDENTIFIER(): TerminalNode { return this.getToken(PaoParser.IDENTIFIER, 0); }
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
@@ -606,9 +868,6 @@ export class NameDeclarationContext extends ParserRuleContext {
 
 
 export class TypeDeclarationContext extends ParserRuleContext {
-	public nameDeclaration(): NameDeclarationContext | undefined {
-		return this.tryGetRuleContext(0, NameDeclarationContext);
-	}
 	public typeRuleDeclaration(): TypeRuleDeclarationContext[];
 	public typeRuleDeclaration(i: number): TypeRuleDeclarationContext;
 	public typeRuleDeclaration(i?: number): TypeRuleDeclarationContext | TypeRuleDeclarationContext[] {
@@ -647,16 +906,35 @@ export class TypeDeclarationContext extends ParserRuleContext {
 
 
 export class TypeRuleDeclarationContext extends ParserRuleContext {
-	public modifier(): ModifierContext {
-		return this.getRuleContext(0, ModifierContext);
+	public domainEventDeclaration(): DomainEventDeclarationContext | undefined {
+		return this.tryGetRuleContext(0, DomainEventDeclarationContext);
 	}
-	public COLON(): TerminalNode { return this.getToken(PaoParser.COLON, 0); }
-	public IDENTIFIER(): TerminalNode | undefined { return this.tryGetToken(PaoParser.IDENTIFIER, 0); }
-	public formalParameterList(): FormalParameterListContext | undefined {
-		return this.tryGetRuleContext(0, FormalParameterListContext);
+	public carrierDeclaration(): CarrierDeclarationContext | undefined {
+		return this.tryGetRuleContext(0, CarrierDeclarationContext);
 	}
-	public fieldParameters(): FieldParametersContext | undefined {
-		return this.tryGetRuleContext(0, FieldParametersContext);
+	public commadEventDeclaration(): CommadEventDeclarationContext | undefined {
+		return this.tryGetRuleContext(0, CommadEventDeclarationContext);
+	}
+	public enterRuleDeclaration(): EnterRuleDeclarationContext | undefined {
+		return this.tryGetRuleContext(0, EnterRuleDeclarationContext);
+	}
+	public inputRuleDeclaration(): InputRuleDeclarationContext | undefined {
+		return this.tryGetRuleContext(0, InputRuleDeclarationContext);
+	}
+	public commentTextDeclaration(): CommentTextDeclarationContext | undefined {
+		return this.tryGetRuleContext(0, CommentTextDeclarationContext);
+	}
+	public extSystemDeclaration(): ExtSystemDeclarationContext | undefined {
+		return this.tryGetRuleContext(0, ExtSystemDeclarationContext);
+	}
+	public schedulerDeclaration(): SchedulerDeclarationContext | undefined {
+		return this.tryGetRuleContext(0, SchedulerDeclarationContext);
+	}
+	public roleDeclaration(): RoleDeclarationContext | undefined {
+		return this.tryGetRuleContext(0, RoleDeclarationContext);
+	}
+	public fieldDeclaration(): FieldDeclarationContext | undefined {
+		return this.tryGetRuleContext(0, FieldDeclarationContext);
 	}
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
@@ -686,29 +964,31 @@ export class TypeRuleDeclarationContext extends ParserRuleContext {
 }
 
 
-export class QualifiedNameContext extends ParserRuleContext {
+export class DomainEventDeclarationContext extends ParserRuleContext {
+	public DOMAIN_EVENT(): TerminalNode { return this.getToken(PaoParser.DOMAIN_EVENT, 0); }
+	public COLON(): TerminalNode { return this.getToken(PaoParser.COLON, 0); }
 	public IDENTIFIER(): TerminalNode { return this.getToken(PaoParser.IDENTIFIER, 0); }
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return PaoParser.RULE_qualifiedName; }
+	public get ruleIndex(): number { return PaoParser.RULE_domainEventDeclaration; }
 	// @Override
 	public enterRule(listener: PaoListener): void {
-		if (listener.enterQualifiedName) {
-			listener.enterQualifiedName(this);
+		if (listener.enterDomainEventDeclaration) {
+			listener.enterDomainEventDeclaration(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: PaoListener): void {
-		if (listener.exitQualifiedName) {
-			listener.exitQualifiedName(this);
+		if (listener.exitDomainEventDeclaration) {
+			listener.exitDomainEventDeclaration(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: PaoVisitor<Result>): Result {
-		if (visitor.visitQualifiedName) {
-			return visitor.visitQualifiedName(this);
+		if (visitor.visitDomainEventDeclaration) {
+			return visitor.visitDomainEventDeclaration(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -716,37 +996,226 @@ export class QualifiedNameContext extends ParserRuleContext {
 }
 
 
-export class FormalParameterListContext extends ParserRuleContext {
-	public qualifiedName(): QualifiedNameContext[];
-	public qualifiedName(i: number): QualifiedNameContext;
-	public qualifiedName(i?: number): QualifiedNameContext | QualifiedNameContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(QualifiedNameContext);
-		} else {
-			return this.getRuleContext(i, QualifiedNameContext);
+export class CommadEventDeclarationContext extends ParserRuleContext {
+	public COMMAND(): TerminalNode { return this.getToken(PaoParser.COMMAND, 0); }
+	public COLON(): TerminalNode { return this.getToken(PaoParser.COLON, 0); }
+	public IDENTIFIER(): TerminalNode { return this.getToken(PaoParser.IDENTIFIER, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return PaoParser.RULE_commadEventDeclaration; }
+	// @Override
+	public enterRule(listener: PaoListener): void {
+		if (listener.enterCommadEventDeclaration) {
+			listener.enterCommadEventDeclaration(this);
 		}
+	}
+	// @Override
+	public exitRule(listener: PaoListener): void {
+		if (listener.exitCommadEventDeclaration) {
+			listener.exitCommadEventDeclaration(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: PaoVisitor<Result>): Result {
+		if (visitor.visitCommadEventDeclaration) {
+			return visitor.visitCommadEventDeclaration(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class CarrierDeclarationContext extends ParserRuleContext {
+	public CARRIER(): TerminalNode { return this.getToken(PaoParser.CARRIER, 0); }
+	public COLON(): TerminalNode { return this.getToken(PaoParser.COLON, 0); }
+	public IDENTIFIER(): TerminalNode { return this.getToken(PaoParser.IDENTIFIER, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return PaoParser.RULE_carrierDeclaration; }
+	// @Override
+	public enterRule(listener: PaoListener): void {
+		if (listener.enterCarrierDeclaration) {
+			listener.enterCarrierDeclaration(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: PaoListener): void {
+		if (listener.exitCarrierDeclaration) {
+			listener.exitCarrierDeclaration(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: PaoVisitor<Result>): Result {
+		if (visitor.visitCarrierDeclaration) {
+			return visitor.visitCarrierDeclaration(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class CommentTextDeclarationContext extends ParserRuleContext {
+	public COMMENT_TEXT(): TerminalNode { return this.getToken(PaoParser.COMMENT_TEXT, 0); }
+	public COLON(): TerminalNode { return this.getToken(PaoParser.COLON, 0); }
+	public IDENTIFIER(): TerminalNode { return this.getToken(PaoParser.IDENTIFIER, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return PaoParser.RULE_commentTextDeclaration; }
+	// @Override
+	public enterRule(listener: PaoListener): void {
+		if (listener.enterCommentTextDeclaration) {
+			listener.enterCommentTextDeclaration(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: PaoListener): void {
+		if (listener.exitCommentTextDeclaration) {
+			listener.exitCommentTextDeclaration(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: PaoVisitor<Result>): Result {
+		if (visitor.visitCommentTextDeclaration) {
+			return visitor.visitCommentTextDeclaration(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class ExtSystemDeclarationContext extends ParserRuleContext {
+	public EXT_SYSTEM(): TerminalNode { return this.getToken(PaoParser.EXT_SYSTEM, 0); }
+	public COLON(): TerminalNode { return this.getToken(PaoParser.COLON, 0); }
+	public IDENTIFIER(): TerminalNode { return this.getToken(PaoParser.IDENTIFIER, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return PaoParser.RULE_extSystemDeclaration; }
+	// @Override
+	public enterRule(listener: PaoListener): void {
+		if (listener.enterExtSystemDeclaration) {
+			listener.enterExtSystemDeclaration(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: PaoListener): void {
+		if (listener.exitExtSystemDeclaration) {
+			listener.exitExtSystemDeclaration(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: PaoVisitor<Result>): Result {
+		if (visitor.visitExtSystemDeclaration) {
+			return visitor.visitExtSystemDeclaration(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class SchedulerDeclarationContext extends ParserRuleContext {
+	public SCHEDULER(): TerminalNode { return this.getToken(PaoParser.SCHEDULER, 0); }
+	public COLON(): TerminalNode { return this.getToken(PaoParser.COLON, 0); }
+	public IDENTIFIER(): TerminalNode { return this.getToken(PaoParser.IDENTIFIER, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return PaoParser.RULE_schedulerDeclaration; }
+	// @Override
+	public enterRule(listener: PaoListener): void {
+		if (listener.enterSchedulerDeclaration) {
+			listener.enterSchedulerDeclaration(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: PaoListener): void {
+		if (listener.exitSchedulerDeclaration) {
+			listener.exitSchedulerDeclaration(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: PaoVisitor<Result>): Result {
+		if (visitor.visitSchedulerDeclaration) {
+			return visitor.visitSchedulerDeclaration(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class RoleDeclarationContext extends ParserRuleContext {
+	public ROLE(): TerminalNode { return this.getToken(PaoParser.ROLE, 0); }
+	public COLON(): TerminalNode { return this.getToken(PaoParser.COLON, 0); }
+	public IDENTIFIER(): TerminalNode { return this.getToken(PaoParser.IDENTIFIER, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return PaoParser.RULE_roleDeclaration; }
+	// @Override
+	public enterRule(listener: PaoListener): void {
+		if (listener.enterRoleDeclaration) {
+			listener.enterRoleDeclaration(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: PaoListener): void {
+		if (listener.exitRoleDeclaration) {
+			listener.exitRoleDeclaration(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: PaoVisitor<Result>): Result {
+		if (visitor.visitRoleDeclaration) {
+			return visitor.visitRoleDeclaration(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class EnterRuleDeclarationContext extends ParserRuleContext {
+	public ENTER_RULE(): TerminalNode { return this.getToken(PaoParser.ENTER_RULE, 0); }
+	public COLON(): TerminalNode { return this.getToken(PaoParser.COLON, 0); }
+	public IDENTIFIER(): TerminalNode | undefined { return this.tryGetToken(PaoParser.IDENTIFIER, 0); }
+	public ruleList(): RuleListContext | undefined {
+		return this.tryGetRuleContext(0, RuleListContext);
 	}
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return PaoParser.RULE_formalParameterList; }
+	public get ruleIndex(): number { return PaoParser.RULE_enterRuleDeclaration; }
 	// @Override
 	public enterRule(listener: PaoListener): void {
-		if (listener.enterFormalParameterList) {
-			listener.enterFormalParameterList(this);
+		if (listener.enterEnterRuleDeclaration) {
+			listener.enterEnterRuleDeclaration(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: PaoListener): void {
-		if (listener.exitFormalParameterList) {
-			listener.exitFormalParameterList(this);
+		if (listener.exitEnterRuleDeclaration) {
+			listener.exitEnterRuleDeclaration(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: PaoVisitor<Result>): Result {
-		if (visitor.visitFormalParameterList) {
-			return visitor.visitFormalParameterList(this);
+		if (visitor.visitEnterRuleDeclaration) {
+			return visitor.visitEnterRuleDeclaration(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -754,7 +1223,42 @@ export class FormalParameterListContext extends ParserRuleContext {
 }
 
 
-export class FieldParametersContext extends ParserRuleContext {
+export class InputRuleDeclarationContext extends ParserRuleContext {
+	public INPUT_RULE(): TerminalNode { return this.getToken(PaoParser.INPUT_RULE, 0); }
+	public COLON(): TerminalNode { return this.getToken(PaoParser.COLON, 0); }
+	public IDENTIFIER(): TerminalNode | undefined { return this.tryGetToken(PaoParser.IDENTIFIER, 0); }
+	public ruleList(): RuleListContext | undefined {
+		return this.tryGetRuleContext(0, RuleListContext);
+	}
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return PaoParser.RULE_inputRuleDeclaration; }
+	// @Override
+	public enterRule(listener: PaoListener): void {
+		if (listener.enterInputRuleDeclaration) {
+			listener.enterInputRuleDeclaration(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: PaoListener): void {
+		if (listener.exitInputRuleDeclaration) {
+			listener.exitInputRuleDeclaration(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: PaoVisitor<Result>): Result {
+		if (visitor.visitInputRuleDeclaration) {
+			return visitor.visitInputRuleDeclaration(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class FieldDeclarationContext extends ParserRuleContext {
 	public FIELD(): TerminalNode { return this.getToken(PaoParser.FIELD, 0); }
 	public COLON(): TerminalNode { return this.getToken(PaoParser.COLON, 0); }
 	public fieldList(): FieldListContext {
@@ -764,23 +1268,70 @@ export class FieldParametersContext extends ParserRuleContext {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return PaoParser.RULE_fieldParameters; }
+	public get ruleIndex(): number { return PaoParser.RULE_fieldDeclaration; }
 	// @Override
 	public enterRule(listener: PaoListener): void {
-		if (listener.enterFieldParameters) {
-			listener.enterFieldParameters(this);
+		if (listener.enterFieldDeclaration) {
+			listener.enterFieldDeclaration(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: PaoListener): void {
-		if (listener.exitFieldParameters) {
-			listener.exitFieldParameters(this);
+		if (listener.exitFieldDeclaration) {
+			listener.exitFieldDeclaration(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: PaoVisitor<Result>): Result {
-		if (visitor.visitFieldParameters) {
-			return visitor.visitFieldParameters(this);
+		if (visitor.visitFieldDeclaration) {
+			return visitor.visitFieldDeclaration(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class RuleListContext extends ParserRuleContext {
+	public IDENTIFIER(): TerminalNode[];
+	public IDENTIFIER(i: number): TerminalNode;
+	public IDENTIFIER(i?: number): TerminalNode | TerminalNode[] {
+		if (i === undefined) {
+			return this.getTokens(PaoParser.IDENTIFIER);
+		} else {
+			return this.getToken(PaoParser.IDENTIFIER, i);
+		}
+	}
+	public WS(): TerminalNode[];
+	public WS(i: number): TerminalNode;
+	public WS(i?: number): TerminalNode | TerminalNode[] {
+		if (i === undefined) {
+			return this.getTokens(PaoParser.WS);
+		} else {
+			return this.getToken(PaoParser.WS, i);
+		}
+	}
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return PaoParser.RULE_ruleList; }
+	// @Override
+	public enterRule(listener: PaoListener): void {
+		if (listener.enterRuleList) {
+			listener.enterRuleList(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: PaoListener): void {
+		if (listener.exitRuleList) {
+			listener.exitRuleList(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: PaoVisitor<Result>): Result {
+		if (visitor.visitRuleList) {
+			return visitor.visitRuleList(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -789,13 +1340,15 @@ export class FieldParametersContext extends ParserRuleContext {
 
 
 export class FieldListContext extends ParserRuleContext {
-	public IDENTIFIER(): TerminalNode[];
-	public IDENTIFIER(i: number): TerminalNode;
-	public IDENTIFIER(i?: number): TerminalNode | TerminalNode[] {
+	public LBRACK(): TerminalNode { return this.getToken(PaoParser.LBRACK, 0); }
+	public RBRACK(): TerminalNode { return this.getToken(PaoParser.RBRACK, 0); }
+	public typeRuleDeclaration(): TypeRuleDeclarationContext[];
+	public typeRuleDeclaration(i: number): TypeRuleDeclarationContext;
+	public typeRuleDeclaration(i?: number): TypeRuleDeclarationContext | TypeRuleDeclarationContext[] {
 		if (i === undefined) {
-			return this.getTokens(PaoParser.IDENTIFIER);
+			return this.getRuleContexts(TypeRuleDeclarationContext);
 		} else {
-			return this.getToken(PaoParser.IDENTIFIER, i);
+			return this.getRuleContext(i, TypeRuleDeclarationContext);
 		}
 	}
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {

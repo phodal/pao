@@ -1,16 +1,23 @@
-// Generated from ../ts/Pao.g4 by ANTLR 4.7.3-SNAPSHOT
+// Generated from Pao.g4 by ANTLR 4.7.3-SNAPSHOT
 
 
 import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
 
-import { ModifierContext } from "./PaoParser";
 import { CompilationUnitContext } from "./PaoParser";
 import { NameDeclarationContext } from "./PaoParser";
 import { TypeDeclarationContext } from "./PaoParser";
 import { TypeRuleDeclarationContext } from "./PaoParser";
-import { QualifiedNameContext } from "./PaoParser";
-import { FormalParameterListContext } from "./PaoParser";
-import { FieldParametersContext } from "./PaoParser";
+import { DomainEventDeclarationContext } from "./PaoParser";
+import { CommadEventDeclarationContext } from "./PaoParser";
+import { CarrierDeclarationContext } from "./PaoParser";
+import { CommentTextDeclarationContext } from "./PaoParser";
+import { ExtSystemDeclarationContext } from "./PaoParser";
+import { SchedulerDeclarationContext } from "./PaoParser";
+import { RoleDeclarationContext } from "./PaoParser";
+import { EnterRuleDeclarationContext } from "./PaoParser";
+import { InputRuleDeclarationContext } from "./PaoParser";
+import { FieldDeclarationContext } from "./PaoParser";
+import { RuleListContext } from "./PaoParser";
 import { FieldListContext } from "./PaoParser";
 
 
@@ -19,17 +26,6 @@ import { FieldListContext } from "./PaoParser";
  * `PaoParser`.
  */
 export interface PaoListener extends ParseTreeListener {
-	/**
-	 * Enter a parse tree produced by `PaoParser.modifier`.
-	 * @param ctx the parse tree
-	 */
-	enterModifier?: (ctx: ModifierContext) => void;
-	/**
-	 * Exit a parse tree produced by `PaoParser.modifier`.
-	 * @param ctx the parse tree
-	 */
-	exitModifier?: (ctx: ModifierContext) => void;
-
 	/**
 	 * Enter a parse tree produced by `PaoParser.compilationUnit`.
 	 * @param ctx the parse tree
@@ -75,37 +71,125 @@ export interface PaoListener extends ParseTreeListener {
 	exitTypeRuleDeclaration?: (ctx: TypeRuleDeclarationContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `PaoParser.qualifiedName`.
+	 * Enter a parse tree produced by `PaoParser.domainEventDeclaration`.
 	 * @param ctx the parse tree
 	 */
-	enterQualifiedName?: (ctx: QualifiedNameContext) => void;
+	enterDomainEventDeclaration?: (ctx: DomainEventDeclarationContext) => void;
 	/**
-	 * Exit a parse tree produced by `PaoParser.qualifiedName`.
+	 * Exit a parse tree produced by `PaoParser.domainEventDeclaration`.
 	 * @param ctx the parse tree
 	 */
-	exitQualifiedName?: (ctx: QualifiedNameContext) => void;
+	exitDomainEventDeclaration?: (ctx: DomainEventDeclarationContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `PaoParser.formalParameterList`.
+	 * Enter a parse tree produced by `PaoParser.commadEventDeclaration`.
 	 * @param ctx the parse tree
 	 */
-	enterFormalParameterList?: (ctx: FormalParameterListContext) => void;
+	enterCommadEventDeclaration?: (ctx: CommadEventDeclarationContext) => void;
 	/**
-	 * Exit a parse tree produced by `PaoParser.formalParameterList`.
+	 * Exit a parse tree produced by `PaoParser.commadEventDeclaration`.
 	 * @param ctx the parse tree
 	 */
-	exitFormalParameterList?: (ctx: FormalParameterListContext) => void;
+	exitCommadEventDeclaration?: (ctx: CommadEventDeclarationContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `PaoParser.fieldParameters`.
+	 * Enter a parse tree produced by `PaoParser.carrierDeclaration`.
 	 * @param ctx the parse tree
 	 */
-	enterFieldParameters?: (ctx: FieldParametersContext) => void;
+	enterCarrierDeclaration?: (ctx: CarrierDeclarationContext) => void;
 	/**
-	 * Exit a parse tree produced by `PaoParser.fieldParameters`.
+	 * Exit a parse tree produced by `PaoParser.carrierDeclaration`.
 	 * @param ctx the parse tree
 	 */
-	exitFieldParameters?: (ctx: FieldParametersContext) => void;
+	exitCarrierDeclaration?: (ctx: CarrierDeclarationContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `PaoParser.commentTextDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	enterCommentTextDeclaration?: (ctx: CommentTextDeclarationContext) => void;
+	/**
+	 * Exit a parse tree produced by `PaoParser.commentTextDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	exitCommentTextDeclaration?: (ctx: CommentTextDeclarationContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `PaoParser.extSystemDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	enterExtSystemDeclaration?: (ctx: ExtSystemDeclarationContext) => void;
+	/**
+	 * Exit a parse tree produced by `PaoParser.extSystemDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	exitExtSystemDeclaration?: (ctx: ExtSystemDeclarationContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `PaoParser.schedulerDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	enterSchedulerDeclaration?: (ctx: SchedulerDeclarationContext) => void;
+	/**
+	 * Exit a parse tree produced by `PaoParser.schedulerDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	exitSchedulerDeclaration?: (ctx: SchedulerDeclarationContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `PaoParser.roleDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	enterRoleDeclaration?: (ctx: RoleDeclarationContext) => void;
+	/**
+	 * Exit a parse tree produced by `PaoParser.roleDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	exitRoleDeclaration?: (ctx: RoleDeclarationContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `PaoParser.enterRuleDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	enterEnterRuleDeclaration?: (ctx: EnterRuleDeclarationContext) => void;
+	/**
+	 * Exit a parse tree produced by `PaoParser.enterRuleDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	exitEnterRuleDeclaration?: (ctx: EnterRuleDeclarationContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `PaoParser.inputRuleDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	enterInputRuleDeclaration?: (ctx: InputRuleDeclarationContext) => void;
+	/**
+	 * Exit a parse tree produced by `PaoParser.inputRuleDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	exitInputRuleDeclaration?: (ctx: InputRuleDeclarationContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `PaoParser.fieldDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	enterFieldDeclaration?: (ctx: FieldDeclarationContext) => void;
+	/**
+	 * Exit a parse tree produced by `PaoParser.fieldDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	exitFieldDeclaration?: (ctx: FieldDeclarationContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `PaoParser.ruleList`.
+	 * @param ctx the parse tree
+	 */
+	enterRuleList?: (ctx: RuleListContext) => void;
+	/**
+	 * Exit a parse tree produced by `PaoParser.ruleList`.
+	 * @param ctx the parse tree
+	 */
+	exitRuleList?: (ctx: RuleListContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `PaoParser.fieldList`.
