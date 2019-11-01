@@ -42,9 +42,12 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
   private drawTree() {
     this.draw = SVG().addTo('#drawing').size(3840, 2180);
 
-    var basePosition: NormalPosition = {x: 20, y: 20};
+    let initPosition = {x: 20, y: 20};
+    var basePosition: NormalPosition = initPosition;
     var width = CONSTANTS.RECT_WIDTH;
-    for (let object of this.data.objects) {
+    for (var i = 0; i < this.data.objects.length; i++) {
+      var object = this.data.objects[i];
+      basePosition.x = basePosition.x + i * (width + 20);
       this.drawDomainItem(this.draw, basePosition, width, object);
     }
   }
