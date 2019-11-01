@@ -7,20 +7,24 @@ modifier
     | CARRIER
     | ENTER_RULE
     | INPUT_RULE
+    | COMMENT_TEXT
+    | EXT_SYSTEM
+    | SCHEDULER
+    | ROLE
     ;
 
 compilationUnit: nameDeclaration typeDeclaration* EOF;
 
 nameDeclaration
-    : modifier (':' | ':') IDENTIFIER
+    : modifier COLON IDENTIFIER
     ;
 
 typeDeclaration
     : nameDeclaration
-    | typeRuleDeclaration
+    | typeRuleDeclaration (typeRuleDeclaration)*
     ;
 
-typeRuleDeclaration : modifier (':' | ':') (IDENTIFIER | formalParameterList | fieldParameters) ;
+typeRuleDeclaration: modifier COLON (IDENTIFIER | formalParameterList | fieldParameters) ;
 
 qualifiedName
     : IDENTIFIER
@@ -39,13 +43,17 @@ fieldList
     ;
 
 COLON: ':' | '：';
-NAME: '名称' | '\u540D\u79F0' | 'name';
-DOMAIN_EVENT: '领域事件' | '\u9886\u57DF\u4E8B\u4EF6' ;
-COMMAND: '决策命令' | '\u51B3\u7B56\u547D\u4EE4';
-CARRIER: '领域名词' | '\u9886\u57DF\u540D\u8BCD';
-ENTER_RULE: '出规则' | '\u51FA\u89C4\u5219';
-INPUT_RULE: '入规则' | '\u5165\u89C4\u5219';
-FIELD: '字段' | '\u5B57\u6BB5';
+NAME: '名称';
+DOMAIN_EVENT: '领域事件';
+COMMAND: '决策命令';
+CARRIER: '领域名词';
+ENTER_RULE: '出规则';
+INPUT_RULE: '入规则';
+FIELD: '字段';
+COMMENT_TEXT: '注释' ;
+EXT_SYSTEM: '外部系统' ;
+SCHEDULER: '定时任务' ;
+ROLE: '角色' ;
 LBRACK: '[';
 RBRACK: ']';
 
