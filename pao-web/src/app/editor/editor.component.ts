@@ -31,7 +31,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
 字段: [
 名称: Phodal
 ]`;
-  private parseResult: PaoModel;
+  parseResult: PaoModel;
   @ViewChild('editorComponent', null) editorElement: MonacoEditorComponent;
 
   ngOnInit() {
