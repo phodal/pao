@@ -9,8 +9,8 @@ import { TypeDeclarationContext } from "./PaoParser";
 import { TypeRuleDeclarationContext } from "./PaoParser";
 import { NameDeclarationContext } from "./PaoParser";
 import { DomainEventDeclarationContext } from "./PaoParser";
-import { CommadEventDeclarationContext } from "./PaoParser";
-import { CarrierDeclarationContext } from "./PaoParser";
+import { CommandEventDeclarationContext } from "./PaoParser";
+import { ConceptDeclarationContext } from "./PaoParser";
 import { CommentTextDeclarationContext } from "./PaoParser";
 import { ExtSystemDeclarationContext } from "./PaoParser";
 import { SchedulerDeclarationContext } from "./PaoParser";
@@ -74,18 +74,18 @@ export interface PaoVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitDomainEventDeclaration?: (ctx: DomainEventDeclarationContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `PaoParser.commadEventDeclaration`.
+	 * Visit a parse tree produced by `PaoParser.commandEventDeclaration`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitCommadEventDeclaration?: (ctx: CommadEventDeclarationContext) => Result;
+	visitCommandEventDeclaration?: (ctx: CommandEventDeclarationContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `PaoParser.carrierDeclaration`.
+	 * Visit a parse tree produced by `PaoParser.conceptDeclaration`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitCarrierDeclaration?: (ctx: CarrierDeclarationContext) => Result;
+	visitConceptDeclaration?: (ctx: ConceptDeclarationContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `PaoParser.commentTextDeclaration`.

@@ -9,8 +9,8 @@ import { TypeDeclarationContext } from "./PaoParser";
 import { TypeRuleDeclarationContext } from "./PaoParser";
 import { NameDeclarationContext } from "./PaoParser";
 import { DomainEventDeclarationContext } from "./PaoParser";
-import { CommadEventDeclarationContext } from "./PaoParser";
-import { CarrierDeclarationContext } from "./PaoParser";
+import { CommandEventDeclarationContext } from "./PaoParser";
+import { ConceptDeclarationContext } from "./PaoParser";
 import { CommentTextDeclarationContext } from "./PaoParser";
 import { ExtSystemDeclarationContext } from "./PaoParser";
 import { SchedulerDeclarationContext } from "./PaoParser";
@@ -95,26 +95,26 @@ export interface PaoListener extends ParseTreeListener {
 	exitDomainEventDeclaration?: (ctx: DomainEventDeclarationContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `PaoParser.commadEventDeclaration`.
+	 * Enter a parse tree produced by `PaoParser.commandEventDeclaration`.
 	 * @param ctx the parse tree
 	 */
-	enterCommadEventDeclaration?: (ctx: CommadEventDeclarationContext) => void;
+	enterCommandEventDeclaration?: (ctx: CommandEventDeclarationContext) => void;
 	/**
-	 * Exit a parse tree produced by `PaoParser.commadEventDeclaration`.
+	 * Exit a parse tree produced by `PaoParser.commandEventDeclaration`.
 	 * @param ctx the parse tree
 	 */
-	exitCommadEventDeclaration?: (ctx: CommadEventDeclarationContext) => void;
+	exitCommandEventDeclaration?: (ctx: CommandEventDeclarationContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `PaoParser.carrierDeclaration`.
+	 * Enter a parse tree produced by `PaoParser.conceptDeclaration`.
 	 * @param ctx the parse tree
 	 */
-	enterCarrierDeclaration?: (ctx: CarrierDeclarationContext) => void;
+	enterConceptDeclaration?: (ctx: ConceptDeclarationContext) => void;
 	/**
-	 * Exit a parse tree produced by `PaoParser.carrierDeclaration`.
+	 * Exit a parse tree produced by `PaoParser.conceptDeclaration`.
 	 * @param ctx the parse tree
 	 */
-	exitCarrierDeclaration?: (ctx: CarrierDeclarationContext) => void;
+	exitConceptDeclaration?: (ctx: ConceptDeclarationContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `PaoParser.commentTextDeclaration`.

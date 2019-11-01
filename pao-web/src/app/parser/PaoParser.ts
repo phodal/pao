@@ -34,7 +34,7 @@ export class PaoParser extends Parser {
 	public static readonly NAME = 4;
 	public static readonly DOMAIN_EVENT = 5;
 	public static readonly COMMAND = 6;
-	public static readonly CARRIER = 7;
+	public static readonly CONCEPT = 7;
 	public static readonly ENTER_RULE = 8;
 	public static readonly INPUT_RULE = 9;
 	public static readonly FIELD = 10;
@@ -56,8 +56,8 @@ export class PaoParser extends Parser {
 	public static readonly RULE_typeRuleDeclaration = 3;
 	public static readonly RULE_nameDeclaration = 4;
 	public static readonly RULE_domainEventDeclaration = 5;
-	public static readonly RULE_commadEventDeclaration = 6;
-	public static readonly RULE_carrierDeclaration = 7;
+	public static readonly RULE_commandEventDeclaration = 6;
+	public static readonly RULE_conceptDeclaration = 7;
 	public static readonly RULE_commentTextDeclaration = 8;
 	public static readonly RULE_extSystemDeclaration = 9;
 	public static readonly RULE_schedulerDeclaration = 10;
@@ -71,8 +71,8 @@ export class PaoParser extends Parser {
 	// tslint:disable:no-trailing-whitespace
 	public static readonly ruleNames: string[] = [
 		"compilationUnit", "systemNameDeclaration", "typeDeclaration", "typeRuleDeclaration", 
-		"nameDeclaration", "domainEventDeclaration", "commadEventDeclaration", 
-		"carrierDeclaration", "commentTextDeclaration", "extSystemDeclaration", 
+		"nameDeclaration", "domainEventDeclaration", "commandEventDeclaration", 
+		"conceptDeclaration", "commentTextDeclaration", "extSystemDeclaration", 
 		"schedulerDeclaration", "roleDeclaration", "enterRuleDeclaration", "inputRuleDeclaration", 
 		"fieldDeclaration", "newSectionDeclaration", "ruleList", "fieldList",
 	];
@@ -86,7 +86,7 @@ export class PaoParser extends Parser {
 	];
 	private static readonly _SYMBOLIC_NAMES: Array<string | undefined> = [
 		undefined, undefined, "COLON", "SYSTEM_NAME", "NAME", "DOMAIN_EVENT", 
-		"COMMAND", "CARRIER", "ENTER_RULE", "INPUT_RULE", "FIELD", "COMMENT_TEXT", 
+		"COMMAND", "CONCEPT", "ENTER_RULE", "INPUT_RULE", "FIELD", "COMMENT_TEXT", 
 		"EXT_SYSTEM", "SCHEDULER", "ROLE", "LBRACK", "RBRACK", "COMMA", "NEWSECTION", 
 		"WS", "COMMENT", "LINE_COMMENT", "IDENTIFIER",
 	];
@@ -125,7 +125,7 @@ export class PaoParser extends Parser {
 			this.state = 40;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << PaoParser.NAME) | (1 << PaoParser.DOMAIN_EVENT) | (1 << PaoParser.COMMAND) | (1 << PaoParser.CARRIER) | (1 << PaoParser.ENTER_RULE) | (1 << PaoParser.INPUT_RULE) | (1 << PaoParser.FIELD) | (1 << PaoParser.COMMENT_TEXT) | (1 << PaoParser.EXT_SYSTEM) | (1 << PaoParser.SCHEDULER) | (1 << PaoParser.ROLE) | (1 << PaoParser.NEWSECTION))) !== 0)) {
+			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << PaoParser.NAME) | (1 << PaoParser.DOMAIN_EVENT) | (1 << PaoParser.COMMAND) | (1 << PaoParser.CONCEPT) | (1 << PaoParser.ENTER_RULE) | (1 << PaoParser.INPUT_RULE) | (1 << PaoParser.FIELD) | (1 << PaoParser.COMMENT_TEXT) | (1 << PaoParser.EXT_SYSTEM) | (1 << PaoParser.SCHEDULER) | (1 << PaoParser.ROLE) | (1 << PaoParser.NEWSECTION))) !== 0)) {
 				{
 				{
 				this.state = 37;
@@ -247,18 +247,18 @@ export class PaoParser extends Parser {
 				this.nameDeclaration();
 				}
 				break;
-			case PaoParser.CARRIER:
+			case PaoParser.CONCEPT:
 				this.enterOuterAlt(_localctx, 3);
 				{
 				this.state = 58;
-				this.carrierDeclaration();
+				this.conceptDeclaration();
 				}
 				break;
 			case PaoParser.COMMAND:
 				this.enterOuterAlt(_localctx, 4);
 				{
 				this.state = 59;
-				this.commadEventDeclaration();
+				this.commandEventDeclaration();
 				}
 				break;
 			case PaoParser.ENTER_RULE:
@@ -394,9 +394,9 @@ export class PaoParser extends Parser {
 		return _localctx;
 	}
 	// @RuleVersion(0)
-	public commadEventDeclaration(): CommadEventDeclarationContext {
-		let _localctx: CommadEventDeclarationContext = new CommadEventDeclarationContext(this._ctx, this.state);
-		this.enterRule(_localctx, 12, PaoParser.RULE_commadEventDeclaration);
+	public commandEventDeclaration(): CommandEventDeclarationContext {
+		let _localctx: CommandEventDeclarationContext = new CommandEventDeclarationContext(this._ctx, this.state);
+		this.enterRule(_localctx, 12, PaoParser.RULE_commandEventDeclaration);
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
@@ -423,14 +423,14 @@ export class PaoParser extends Parser {
 		return _localctx;
 	}
 	// @RuleVersion(0)
-	public carrierDeclaration(): CarrierDeclarationContext {
-		let _localctx: CarrierDeclarationContext = new CarrierDeclarationContext(this._ctx, this.state);
-		this.enterRule(_localctx, 14, PaoParser.RULE_carrierDeclaration);
+	public conceptDeclaration(): ConceptDeclarationContext {
+		let _localctx: ConceptDeclarationContext = new ConceptDeclarationContext(this._ctx, this.state);
+		this.enterRule(_localctx, 14, PaoParser.RULE_conceptDeclaration);
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
 			this.state = 82;
-			this.match(PaoParser.CARRIER);
+			this.match(PaoParser.CONCEPT);
 			this.state = 83;
 			this.match(PaoParser.COLON);
 			this.state = 84;
@@ -774,7 +774,7 @@ export class PaoParser extends Parser {
 			this.state = 135;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << PaoParser.NAME) | (1 << PaoParser.DOMAIN_EVENT) | (1 << PaoParser.COMMAND) | (1 << PaoParser.CARRIER) | (1 << PaoParser.ENTER_RULE) | (1 << PaoParser.INPUT_RULE) | (1 << PaoParser.FIELD) | (1 << PaoParser.COMMENT_TEXT) | (1 << PaoParser.EXT_SYSTEM) | (1 << PaoParser.SCHEDULER) | (1 << PaoParser.ROLE) | (1 << PaoParser.NEWSECTION))) !== 0)) {
+			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << PaoParser.NAME) | (1 << PaoParser.DOMAIN_EVENT) | (1 << PaoParser.COMMAND) | (1 << PaoParser.CONCEPT) | (1 << PaoParser.ENTER_RULE) | (1 << PaoParser.INPUT_RULE) | (1 << PaoParser.FIELD) | (1 << PaoParser.COMMENT_TEXT) | (1 << PaoParser.EXT_SYSTEM) | (1 << PaoParser.SCHEDULER) | (1 << PaoParser.ROLE) | (1 << PaoParser.NEWSECTION))) !== 0)) {
 				{
 				{
 				this.state = 132;
@@ -991,11 +991,11 @@ export class TypeRuleDeclarationContext extends ParserRuleContext {
 	public nameDeclaration(): NameDeclarationContext | undefined {
 		return this.tryGetRuleContext(0, NameDeclarationContext);
 	}
-	public carrierDeclaration(): CarrierDeclarationContext | undefined {
-		return this.tryGetRuleContext(0, CarrierDeclarationContext);
+	public conceptDeclaration(): ConceptDeclarationContext | undefined {
+		return this.tryGetRuleContext(0, ConceptDeclarationContext);
 	}
-	public commadEventDeclaration(): CommadEventDeclarationContext | undefined {
-		return this.tryGetRuleContext(0, CommadEventDeclarationContext);
+	public commandEventDeclaration(): CommandEventDeclarationContext | undefined {
+		return this.tryGetRuleContext(0, CommandEventDeclarationContext);
 	}
 	public enterRuleDeclaration(): EnterRuleDeclarationContext | undefined {
 		return this.tryGetRuleContext(0, EnterRuleDeclarationContext);
@@ -1113,7 +1113,7 @@ export class DomainEventDeclarationContext extends ParserRuleContext {
 }
 
 
-export class CommadEventDeclarationContext extends ParserRuleContext {
+export class CommandEventDeclarationContext extends ParserRuleContext {
 	public COMMAND(): TerminalNode { return this.getToken(PaoParser.COMMAND, 0); }
 	public COLON(): TerminalNode { return this.getToken(PaoParser.COLON, 0); }
 	public IDENTIFIER(): TerminalNode { return this.getToken(PaoParser.IDENTIFIER, 0); }
@@ -1121,23 +1121,23 @@ export class CommadEventDeclarationContext extends ParserRuleContext {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return PaoParser.RULE_commadEventDeclaration; }
+	public get ruleIndex(): number { return PaoParser.RULE_commandEventDeclaration; }
 	// @Override
 	public enterRule(listener: PaoListener): void {
-		if (listener.enterCommadEventDeclaration) {
-			listener.enterCommadEventDeclaration(this);
+		if (listener.enterCommandEventDeclaration) {
+			listener.enterCommandEventDeclaration(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: PaoListener): void {
-		if (listener.exitCommadEventDeclaration) {
-			listener.exitCommadEventDeclaration(this);
+		if (listener.exitCommandEventDeclaration) {
+			listener.exitCommandEventDeclaration(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: PaoVisitor<Result>): Result {
-		if (visitor.visitCommadEventDeclaration) {
-			return visitor.visitCommadEventDeclaration(this);
+		if (visitor.visitCommandEventDeclaration) {
+			return visitor.visitCommandEventDeclaration(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -1145,31 +1145,31 @@ export class CommadEventDeclarationContext extends ParserRuleContext {
 }
 
 
-export class CarrierDeclarationContext extends ParserRuleContext {
-	public CARRIER(): TerminalNode { return this.getToken(PaoParser.CARRIER, 0); }
+export class ConceptDeclarationContext extends ParserRuleContext {
+	public CONCEPT(): TerminalNode { return this.getToken(PaoParser.CONCEPT, 0); }
 	public COLON(): TerminalNode { return this.getToken(PaoParser.COLON, 0); }
 	public IDENTIFIER(): TerminalNode { return this.getToken(PaoParser.IDENTIFIER, 0); }
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return PaoParser.RULE_carrierDeclaration; }
+	public get ruleIndex(): number { return PaoParser.RULE_conceptDeclaration; }
 	// @Override
 	public enterRule(listener: PaoListener): void {
-		if (listener.enterCarrierDeclaration) {
-			listener.enterCarrierDeclaration(this);
+		if (listener.enterConceptDeclaration) {
+			listener.enterConceptDeclaration(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: PaoListener): void {
-		if (listener.exitCarrierDeclaration) {
-			listener.exitCarrierDeclaration(this);
+		if (listener.exitConceptDeclaration) {
+			listener.exitConceptDeclaration(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: PaoVisitor<Result>): Result {
-		if (visitor.visitCarrierDeclaration) {
-			return visitor.visitCarrierDeclaration(this);
+		if (visitor.visitConceptDeclaration) {
+			return visitor.visitConceptDeclaration(this);
 		} else {
 			return visitor.visitChildren(this);
 		}

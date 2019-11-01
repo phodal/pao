@@ -22,7 +22,7 @@ export class PaoLexer extends Lexer {
 	public static readonly NAME = 4;
 	public static readonly DOMAIN_EVENT = 5;
 	public static readonly COMMAND = 6;
-	public static readonly CARRIER = 7;
+	public static readonly CONCEPT = 7;
 	public static readonly ENTER_RULE = 8;
 	public static readonly INPUT_RULE = 9;
 	public static readonly FIELD = 10;
@@ -50,7 +50,7 @@ export class PaoLexer extends Lexer {
 	];
 
 	public static readonly ruleNames: string[] = [
-		"T__0", "COLON", "SYSTEM_NAME", "NAME", "DOMAIN_EVENT", "COMMAND", "CARRIER", 
+		"T__0", "COLON", "SYSTEM_NAME", "NAME", "DOMAIN_EVENT", "COMMAND", "CONCEPT", 
 		"ENTER_RULE", "INPUT_RULE", "FIELD", "COMMENT_TEXT", "EXT_SYSTEM", "SCHEDULER", 
 		"ROLE", "LBRACK", "RBRACK", "COMMA", "NEWSECTION", "WS", "COMMENT", "LINE_COMMENT", 
 		"IDENTIFIER", "LetterOrDigit", "Letter",
@@ -65,7 +65,7 @@ export class PaoLexer extends Lexer {
 	];
 	private static readonly _SYMBOLIC_NAMES: Array<string | undefined> = [
 		undefined, undefined, "COLON", "SYSTEM_NAME", "NAME", "DOMAIN_EVENT", 
-		"COMMAND", "CARRIER", "ENTER_RULE", "INPUT_RULE", "FIELD", "COMMENT_TEXT", 
+		"COMMAND", "CONCEPT", "ENTER_RULE", "INPUT_RULE", "FIELD", "COMMENT_TEXT", 
 		"EXT_SYSTEM", "SCHEDULER", "ROLE", "LBRACK", "RBRACK", "COMMA", "NEWSECTION", 
 		"WS", "COMMENT", "LINE_COMMENT", "IDENTIFIER",
 	];

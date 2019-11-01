@@ -38,9 +38,11 @@ export class EditorComponent implements OnInit {
     let tree = parser.compilationUnit();
 
     const listener = new PaoGrammarListener();
-
+    listener.onFinish(() => {
+      let result = listener.getParseResult();
+      console.log(result);
+    });
     ParseTreeWalker.DEFAULT.walk(listener as ParseTreeListener, tree);
-    listener.getParseResult();
   }
 
 }

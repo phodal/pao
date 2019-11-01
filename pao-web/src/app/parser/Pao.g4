@@ -9,8 +9,8 @@ typeDeclaration: typeRuleDeclaration (typeRuleDeclaration)*;
 typeRuleDeclaration
     : domainEventDeclaration
     | nameDeclaration
-    | carrierDeclaration
-    | commadEventDeclaration
+    | conceptDeclaration
+    | commandEventDeclaration
     | enterRuleDeclaration
     | inputRuleDeclaration
     | commentTextDeclaration
@@ -23,8 +23,8 @@ typeRuleDeclaration
 
 nameDeclaration: NAME COLON IDENTIFIER;
 domainEventDeclaration: DOMAIN_EVENT COLON IDENTIFIER;
-commadEventDeclaration: COMMAND COLON IDENTIFIER;
-carrierDeclaration: CARRIER COLON IDENTIFIER;
+commandEventDeclaration: COMMAND COLON IDENTIFIER;
+conceptDeclaration: CONCEPT COLON IDENTIFIER;
 commentTextDeclaration: COMMENT_TEXT COLON IDENTIFIER;
 extSystemDeclaration: EXT_SYSTEM COLON IDENTIFIER;
 schedulerDeclaration: SCHEDULER COLON IDENTIFIER;
@@ -49,7 +49,7 @@ SYSTEM_NAME: '系统名称';
 NAME: '名称';
 DOMAIN_EVENT: '领域事件';
 COMMAND: '决策命令';
-CARRIER: '领域名词';
+CONCEPT: '领域名词';
 ENTER_RULE: '出规则';
 INPUT_RULE: '入规则';
 FIELD: '字段';

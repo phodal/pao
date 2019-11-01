@@ -9,9 +9,10 @@ interface DomainObject {
   commandName: string;
   rule: string[];
   concept: string;
+  comment?: string;
   externalSystem?: string;
-  trigger?: string;
-  role: string;
+  scheduler?: string;
+  role?: string;
 }
 
 
