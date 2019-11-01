@@ -1,7 +1,6 @@
 import {PaoListener} from "../parser/PaoListener";
 import {
   DomainEventDeclarationContext,
-  FieldListContext,
   NameDeclarationContext, RuleListContext,
   TypeRuleDeclarationContext
 } from "../parser/PaoParser";
