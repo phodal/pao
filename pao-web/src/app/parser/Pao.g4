@@ -1,15 +1,14 @@
 grammar Pao;
 
-compilationUnit: nameDeclaration typeDeclaration* EOF;
+compilationUnit: systemNameDeclaration typeDeclaration* EOF;
 
-nameDeclaration
-    : NAME COLON IDENTIFIER
-    ;
+systemNameDeclaration: SYSTEM_NAME COLON IDENTIFIER;
 
 typeDeclaration: typeRuleDeclaration (typeRuleDeclaration)*;
 
 typeRuleDeclaration
     : domainEventDeclaration
+    | nameDeclaration
     | carrierDeclaration
     | commadEventDeclaration
     | enterRuleDeclaration
@@ -21,6 +20,7 @@ typeRuleDeclaration
     | fieldDeclaration
     ;
 
+nameDeclaration: NAME COLON IDENTIFIER;
 domainEventDeclaration: DOMAIN_EVENT COLON IDENTIFIER;
 commadEventDeclaration: COMMAND COLON IDENTIFIER;
 carrierDeclaration: CARRIER COLON IDENTIFIER;
@@ -42,6 +42,7 @@ fieldList
     ;
 
 COLON: ':' | '：';
+SYSTEM_NAME: '系统名称';
 NAME: '名称';
 DOMAIN_EVENT: '领域事件';
 COMMAND: '决策命令';

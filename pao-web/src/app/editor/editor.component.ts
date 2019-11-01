@@ -15,7 +15,7 @@ export class EditorComponent implements OnInit {
   ngOnInit() {
 // Create the lexer and parser
     let inputStream = CharStreams.fromString(`
-名称:庖丁解牛系统
+系统名称:庖丁解牛系统
 
 领域事件:a
 决策命令:a
@@ -26,6 +26,11 @@ export class EditorComponent implements OnInit {
 领域事件: b
 决策命令:b
 领域名词:b
+
+字段: [
+名称: Phodal
+]
+
 `);
     let lexer = new PaoLexer(inputStream);
     let tokenStream = new CommonTokenStream(lexer);

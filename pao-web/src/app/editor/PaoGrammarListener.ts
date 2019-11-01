@@ -1,22 +1,22 @@
 import {PaoListener} from "../parser/PaoListener";
 import {
-  DomainEventDeclarationContext,
-  NameDeclarationContext, RuleListContext,
+  DomainEventDeclarationContext, RuleListContext, SystemNameDeclarationContext,
   TypeRuleDeclarationContext
 } from "../parser/PaoParser";
 
 export class PaoGrammarListener implements PaoListener {
   systemName: string;
+  paoModel: PaoModel = {name: '', objects: []};
 
   constructor() {
   }
 
-  enterNameDeclaration(ctx: NameDeclarationContext) {
+  enterSystemNameDeclaration(ctx: SystemNameDeclarationContext) {
     this.systemName = ctx.IDENTIFIER().text;
-  };
+  }
 
-  enterDomainEventDeclaration(ctx: DomainEventDeclarationContext){
-    console.log(ctx.IDENTIFIER().text)
+  enterDomainEventDeclaration(ctx: DomainEventDeclarationContext) {
+    this.paoModel.name = ctx.IDENTIFIER().text;
   };
 
   enterRuleList(ctx: RuleListContext) {
@@ -27,9 +27,10 @@ export class PaoGrammarListener implements PaoListener {
   }
 
   enterTypeRuleDeclaration(ctx: TypeRuleDeclarationContext) {
+
   };
 
   getParseResult() {
-
+    return this.paoModel;
   }
 }

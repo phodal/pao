@@ -4,6 +4,7 @@
 import { ParseTreeVisitor } from "antlr4ts/tree/ParseTreeVisitor";
 
 import { CompilationUnitContext } from "./PaoParser";
+import { SystemNameDeclarationContext } from "./PaoParser";
 import { NameDeclarationContext } from "./PaoParser";
 import { TypeDeclarationContext } from "./PaoParser";
 import { TypeRuleDeclarationContext } from "./PaoParser";
@@ -35,6 +36,13 @@ export interface PaoVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitCompilationUnit?: (ctx: CompilationUnitContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `PaoParser.systemNameDeclaration`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitSystemNameDeclaration?: (ctx: SystemNameDeclarationContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `PaoParser.nameDeclaration`.

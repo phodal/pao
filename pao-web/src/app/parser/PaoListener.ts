@@ -4,6 +4,7 @@
 import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
 
 import { CompilationUnitContext } from "./PaoParser";
+import { SystemNameDeclarationContext } from "./PaoParser";
 import { NameDeclarationContext } from "./PaoParser";
 import { TypeDeclarationContext } from "./PaoParser";
 import { TypeRuleDeclarationContext } from "./PaoParser";
@@ -36,6 +37,17 @@ export interface PaoListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitCompilationUnit?: (ctx: CompilationUnitContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `PaoParser.systemNameDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	enterSystemNameDeclaration?: (ctx: SystemNameDeclarationContext) => void;
+	/**
+	 * Exit a parse tree produced by `PaoParser.systemNameDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	exitSystemNameDeclaration?: (ctx: SystemNameDeclarationContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `PaoParser.nameDeclaration`.
