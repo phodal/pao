@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "outDir": "target",
+    "sourceMap": true,
+    "module": "commonjs",
+    "target": "es5",
+    "lib": [
+      "es2015",
+      "es6"
+    ],
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "experimentalDecorators": true,
+    "declaration": true,
+    "preserveConstEnums": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "types": [
+      "node"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "target",
+    "tool",
+    "test/runtime"
+  ]
+}

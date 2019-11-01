@@ -3,3 +3,4 @@
 *.tokens
 *.js
 *.go
+node_modules/
