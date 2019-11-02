@@ -55,6 +55,7 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     // tslint:disable-next-line:prefer-for-of
     this.totalLevel = 1;
     this.maxRulesLength = 0;
+    let lastParentType = '';
 
     for (let i = 0; i < dataValue.objects.length; i++) {
       const object: DomainObject = dataValue.objects[i];
@@ -62,13 +63,21 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
         this.currentRulesLength = object.rules.length;
         object.location.column = this.totalLevel;
         object.location.currentNodeRulesLength = object.rules.length;
+
+        dataValue.map[object.id].location.column = this.totalLevel;
         dataValue.objects[i] = this.buildObjectLevel(object, object.location.column);
+
         this.totalLevel++;
       } else if (!object.rules && !object.ruleId) {
+        if (lastParentType === 'subnode') {
+          this.totalLevel++;
+        }
+
         object.location.column = this.totalLevel;
         dataValue.map[object.id].location.column = this.totalLevel;
         this.totalLevel++;
       } else if (object.ruleId) {
+        lastParentType = 'subnode';
         object.location.column = this.totalLevel;
         dataValue.map[object.id].location.column = this.totalLevel;
       }
@@ -119,7 +128,7 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     const width = CONSTANTS.RECT_WIDTH;
 
     const rectDistance = 20;
-    let rulesCount = 1;
+    let rulesCount = 0;
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < this.dataValue.objects.length; i++) {
       const object = this.dataValue.objects[i];
@@ -135,13 +144,13 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
         rulesCount++;
       }
 
-      console.log(object.location);
+      console.log(basePosition, object.location);
       this.drawDomainItem(this.draw, basePosition, width, object);
     }
   }
 
   private getX(rectSize, mapObject, rulesCount: number) {
-    const pos = mapObject.location.column + rulesCount - 1;
+    const pos = mapObject.location.column + rulesCount;
     return rectSize * (pos);
   }
 
