@@ -107,29 +107,32 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     const width = CONSTANTS.RECT_WIDTH;
 
     const rectDistance = 20;
+    let ruleCount = 0;
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < this.dataValue.objects.length; i++) {
       const object = this.dataValue.objects[i];
-      basePosition.x = initPosition.x + object.level * (width + rectDistance);
-      basePosition.y = (width * this.maxHeight) / object.level;
 
+      basePosition.y = (width * this.maxHeight) / object.level;
       if (object.levelInfo) {
-        basePosition.y = (object.levelInfo.index - 1) * (width + rectDistance + 30) * 3;
+        basePosition.y = (object.levelInfo.index - 1) * (width + rectDistance) * 3;
       }
 
-      console.log(object.level);
-      const position = {
+      basePosition.x = (width + rectDistance) * (object.level + ruleCount - 1);
+      if (object.rules.length > 0) {
+        ruleCount++;
+        console.log(ruleCount);
+      }
+
+      this.drawDomainItem(this.draw, {
         x: basePosition.x,
         y: basePosition.y
-      };
-      console.log(basePosition.x, position.y);
-      this.drawDomainItem(this.draw, position, width, object);
+      }, width, object);
     }
   }
 
   private drawDomainItem(draw: Svg, basePosition: NormalPosition, width: number, domainObject: DomainObject) {
     const domainGroup = draw.group();
-    const offset = 25;
+    const offset = 0;
 
     const commandGroup = draw.group();
     const commandRect = draw.rect(width, width).fill(DOMAIN_COLORS.COMMAND).move(basePosition.x, basePosition.y);
