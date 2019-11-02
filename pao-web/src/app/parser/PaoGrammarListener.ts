@@ -13,7 +13,6 @@ export class PaoGrammarListener implements PaoListener {
   paoModel: PaoModel = {name: '', objects: []};
   currentObject: DomainObject;
   finishCallback: () => void;
-  ruleRelations = [];
   allRules: RuleModel[] = [];
 
   constructor() {
@@ -86,6 +85,7 @@ export class PaoGrammarListener implements PaoListener {
         rule: rule.text
       });
     }
+
     this.allRules = this.allRules.concat(rules);
     this.currentObject.id = parentId;
     this.currentObject.rules = rules;
@@ -107,7 +107,6 @@ export class PaoGrammarListener implements PaoListener {
   }
 
   getParseResult() {
-    console.log(this.paoModel);
     return this.paoModel;
   }
 }

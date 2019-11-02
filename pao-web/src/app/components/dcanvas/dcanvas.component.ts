@@ -20,7 +20,7 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     this.drawTree();
   }
 
-  private dataValue = {
+  private dataValue: PaoModel = {
     name: '庖丁解牛系统',
     objects: [
       {
@@ -49,7 +49,6 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     this.drawTree();
   }
 
-
   private drawTree() {
     if (this.draw) {
       this.draw.remove();
@@ -59,6 +58,15 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
       return;
     }
 
+    this.calculatePositions(this.dataValue);
+    this.startDraw();
+  }
+
+  private calculatePositions(dataValue: PaoModel) {
+
+  }
+
+  private startDraw() {
     this.draw = SVG().addTo('#drawing').size(3840, 2180);
 
     const initPosition = {x: 20, y: 20};
@@ -67,7 +75,6 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < this.dataValue.objects.length; i++) {
       const object = this.dataValue.objects[i];
       basePosition.x = initPosition.x + i * (width + 20);
-      console.log(initPosition.x, basePosition.x)
       this.drawDomainItem(this.draw, basePosition, width, object);
     }
   }

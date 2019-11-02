@@ -5,19 +5,21 @@ interface PaoModel {
 }
 
 interface RuleModel {
-  parentId: number;
-  id: number;
+  parentId: string;
+  id: string;
   rule: string;
 }
 
 interface DomainObject {
-  id?: number;
-  parentId?: number;
-  ruleId?: number;
+  id?: string;
+  parentId?: string;
+  ruleId?: string;
+
   eventName: string;
   commandName: string;
-  rules: string[] | RuleModel[];
   conceptName: string;
+
+  rules?: string[] | RuleModel[];
   comment?: string;
   externalSystem?: string;
   scheduler?: string;
