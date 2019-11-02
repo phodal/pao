@@ -61,11 +61,13 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
 
     this.draw = SVG().addTo('#drawing').size(3840, 2180);
 
-    const basePosition: NormalPosition = {x: 20, y: 20};
+    const initPosition = {x: 20, y: 20};
+    const basePosition: NormalPosition = JSON.parse(JSON.stringify(initPosition));
     const width = CONSTANTS.RECT_WIDTH;
     for (let i = 0; i < this.dataValue.objects.length; i++) {
       const object = this.dataValue.objects[i];
-      basePosition.x = basePosition.x + i * (width + 20);
+      basePosition.x = initPosition.x + i * (width + 20);
+      console.log(initPosition.x, basePosition.x)
       this.drawDomainItem(this.draw, basePosition, width, object);
     }
   }
@@ -104,7 +106,6 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
       text = ' ';
     }
     const textEl = draw.text(text);
-    console.log(textEl);
     textEl.move(commandRect.x() + 20, commandRect.y() + 20)
       .font({fill: '#000', family: 'Inconsolata', size: '20'});
     return textEl;
