@@ -61,8 +61,9 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
         this.totalLevel++;
         continue;
       }
-      if (!object.ruleId && !dataValue.objects[i].location.nodeLevel) {
-        dataValue.objects[i].location.nodeLevel = this.totalLevel;
+
+      if (!object.rules && !object.ruleId) {
+        this.dataValue.map[object.id].location.column = this.totalLevel;
         this.totalLevel++;
       }
     }

@@ -46,6 +46,10 @@ export class EdititComponent implements OnInit, AfterViewInit {
 决策命令: 还没有2
 领域名词: 规则引擎2
 
+领域事件:condition
+决策命令:condition
+领域名词:condition
+
 `;
 
   constructor() {
