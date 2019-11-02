@@ -189,7 +189,7 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     this.dataValue.map = {};
     for (let i = 0; i < this.dataValue.objects.length; i++) {
       const data = JSON.parse(JSON.stringify(this.dataValue.objects[i]));
-      this.dataValue.objects[i].index = i;
+      this.dataValue.objects[i].column = i;
       this.dataValue.map[data.id] = data;
     }
   }
