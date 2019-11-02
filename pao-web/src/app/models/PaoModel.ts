@@ -16,7 +16,7 @@ interface DomainObject {
   parentId?: string;
   ruleId?: string;
   index?: number;
-  currentLevel?: number;
+  totalLevel?: number;
 
   eventName: string;
   commandName: string;
@@ -27,6 +27,10 @@ interface DomainObject {
   externalSystem?: string;
   scheduler?: string;
   role?: string;
+  levelInfo?: {
+    index: number,
+    level: number
+  };
 }
 
 interface DomainObjectGraph extends DomainObject {

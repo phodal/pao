@@ -10,7 +10,8 @@ import {CONSTANTS, DOMAIN_COLORS} from '../../constant';
   styleUrls: ['./dcanvas.component.less']
 })
 export class DcanvasComponent implements OnInit, AfterViewInit {
-  private currentLevel: number;
+  private totalLevel: number;
+
   get data(): PaoModel {
     return this.dataValue;
   }
@@ -53,38 +54,45 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
 
   private calculatePositions(dataValue: PaoModel) {
     // tslint:disable-next-line:prefer-for-of
-    this.currentLevel = 1;
+    this.totalLevel = 1;
     for (let i = 0; i < dataValue.objects.length; i++) {
       const object = dataValue.objects[i];
       if (object.rules.length > 0) {
-        dataValue.objects[i].currentLevel = this.currentLevel;
-        dataValue.objects[i] = this.buildObjectLevel(object);
-        this.currentLevel++;
+        const relateParentLevel = 1;
+        dataValue.objects[i].totalLevel = this.totalLevel;
+        dataValue.objects[i] = this.buildObjectLevel(object, relateParentLevel);
+        this.totalLevel++;
         continue;
       }
       if (!object.ruleId) {
-        dataValue.objects[i].currentLevel = this.currentLevel;
-        this.currentLevel++;
+        dataValue.objects[i].totalLevel = this.totalLevel;
+        this.totalLevel++;
       }
     }
 
     this.dataValue = dataValue;
   }
 
-  private buildObjectLevel(object: DomainObject) {
-    this.currentLevel++;
-    for (const rule of object.rules) {
+  private buildObjectLevel(object: DomainObject, relateParentLevel: number) {
+    this.totalLevel++;
+    relateParentLevel++;
+    for (let index = 0; index < object.rules.length; index++) {
+      const rule = object.rules[index];
       const ruleId = (rule as RuleModel).id;
       const forkObject = this.dataValue.map[ruleId];
       if (!forkObject) {
         continue;
       }
 
+      this.dataValue.map[ruleId].levelInfo = {
+        index: index + 1,
+        level: relateParentLevel
+      };
       if (forkObject && forkObject.hasOwnProperty('rules') && forkObject.rules.length > 0) {
         // TODO: 多层规则时，肯定会出错……
-        this.dataValue.objects[forkObject.index] = this.buildObjectLevel(this.dataValue.objects[forkObject.id], this.currentLevel);
+        this.dataValue.objects[forkObject.index] = this.buildObjectLevel(this.dataValue.objects[forkObject.id], relateParentLevel);
       } else if (this.dataValue.objects[forkObject.index]) {
-        this.dataValue.objects[forkObject.index].currentLevel = this.currentLevel;
+        this.dataValue.objects[forkObject.index].totalLevel = this.totalLevel;
       }
     }
 
@@ -98,16 +106,21 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     const basePosition: NormalPosition = JSON.parse(JSON.stringify(initPosition));
     const width = CONSTANTS.RECT_WIDTH;
 
+    const rectDistance = 20;
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < this.dataValue.objects.length; i++) {
       const object = this.dataValue.objects[i];
-      basePosition.x = initPosition.x + object.currentLevel * (width + 20);
-      basePosition.y = this.maxHeight * width / 2;
+      basePosition.x = initPosition.x + object.totalLevel * (width + rectDistance);
+      basePosition.y = (width * this.maxHeight) / object.totalLevel;
 
-      console.log(object.currentLevel);
+      if (object.levelInfo) {
+        basePosition.y = (object.levelInfo.index - 1) * (width + rectDistance + 30) * 3;
+      }
+
+      console.log(object.totalLevel);
       const position = {
         x: basePosition.x,
-        y: (width * this.maxHeight) / object.currentLevel
+        y: basePosition.y
       };
       console.log(basePosition.x, position.y);
       this.drawDomainItem(this.draw, position, width, object);
