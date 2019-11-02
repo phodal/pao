@@ -15,8 +15,6 @@ interface DomainObject {
   id?: string;
   parentId?: string;
   ruleId?: string;
-  column?: number;
-  level?: number;
 
   eventName: string;
   commandName: string;
@@ -29,10 +27,7 @@ interface DomainObject {
   externalSystem?: string;
   scheduler?: string;
   role?: string;
-  levelInfo?: {
-    index: number,
-    level: number
-  };
+  location?: NodeLocation;
 }
 
 interface DomainObjectGraph extends DomainObject {
@@ -53,4 +48,11 @@ interface DomainField {
   name: string;
   type: DomainFieldType;
   relationship: '1' | '1...N' | '0...1';
+}
+
+interface NodeLocation {
+  index: number;
+  column: number;
+  nodeLevel: number;
+  indexInRules: number;
 }

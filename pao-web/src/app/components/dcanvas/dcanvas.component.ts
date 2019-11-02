@@ -47,7 +47,6 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
 
     this.buildDataValueMap();
     this.calculatePositions(this.dataValue);
-    console.log(this.dataValue);
     this.startDraw();
   }
 
@@ -57,12 +56,13 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < dataValue.objects.length; i++) {
       const object = dataValue.objects[i];
       if (object.rules) {
-        dataValue.objects[i].level = this.totalLevel;
-        dataValue.objects[i] = this.buildObjectLevel(object, dataValue.objects[i].level);
+        dataValue.objects[i].location.column = this.totalLevel;
+        dataValue.objects[i] = this.buildObjectLevel(object, dataValue.objects[i].location.column);
         this.totalLevel++;
+        continue;
       }
-      if (!object.ruleId && !dataValue.objects[i].level) {
-        dataValue.objects[i].level = this.totalLevel;
+      if (!object.ruleId && !dataValue.objects[i].location.nodeLevel) {
+        dataValue.objects[i].location.nodeLevel = this.totalLevel;
         this.totalLevel++;
       }
     }
@@ -80,16 +80,16 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
         continue;
       }
 
-      const changeObject = this.dataValue.objects[forkObject.index];
-      this.dataValue.map[ruleId].levelInfo = {
-        index: index + 1,
-        level: relateParentLevel
-      };
-      if (changeObject && forkObject.rules) {
-        // TODO: 多层规则时，肯定会出错……
+      const changeObject = this.dataValue.objects[forkObject.location.index];
+
+      forkObject.location.column = this.totalLevel;
+      forkObject.location.indexInRules = index + 1;
+      forkObject.location.nodeLevel = relateParentLevel;
+
+      if (forkObject.rules) {
         this.dataValue.objects[forkObject.index] = this.buildObjectLevel(changeObject, relateParentLevel);
-      } else if (changeObject) {
-        changeObject.level = this.totalLevel;
+      } else {
+        changeObject.location.column = this.totalLevel;
       }
     }
 
@@ -108,31 +108,38 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     const width = CONSTANTS.RECT_WIDTH;
 
     const rectDistance = 20;
-    let ruleCount = 0;
+    let rulesCount = 1;
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < this.dataValue.objects.length; i++) {
       const object = this.dataValue.objects[i];
+      const locationMapObject = this.dataValue.map[object.id];
 
-      const mapObject = this.dataValue.map[object.id];
-
-      console.log(this.maxHeight);
-      if (mapObject && mapObject.levelInfo) {
-        basePosition.x = (width + rectDistance) * (mapObject.levelInfo.level + ruleCount - 1);
-        basePosition.y = (mapObject.levelInfo.index - 1) * (width + rectDistance) * 3;
-      } else {
-        basePosition.y = (width * this.maxHeight) / object.level;
-        basePosition.x = (width + rectDistance) * (object.level + ruleCount - 1);
+      const rectSize = width + rectDistance;
+      if (locationMapObject && locationMapObject.location) {
+        basePosition.x = this.getX(rectSize, locationMapObject, rulesCount);
+        basePosition.y = this.getY(locationMapObject, rectSize);
       }
 
       if (object.rules && object.rules.length > 0) {
-        ruleCount++;
+        rulesCount++;
       }
 
-      this.drawDomainItem(this.draw, {
-        x: basePosition.x,
-        y: basePosition.y
-      }, width, object);
+      console.log(locationMapObject.location);
+      this.drawDomainItem(this.draw, basePosition, width, object);
     }
+  }
+
+  private getX(rectSize, mapObject, rulesCount: number) {
+    const pos = mapObject.location.column + rulesCount - 1;
+    return rectSize * (pos);
+  }
+
+  private getY(mapObject, rectSize) {
+    let basicIndex = 1;
+    if (mapObject.location.indexInRules) {
+      basicIndex = mapObject.location.indexInRules;
+    }
+    return (basicIndex - 1) * rectSize * 3;
   }
 
   private drawDomainItem(draw: Svg, basePosition: NormalPosition, width: number, domainObject: DomainObject) {
@@ -188,8 +195,13 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
   private buildDataValueMap() {
     this.dataValue.map = {};
     for (let i = 0; i < this.dataValue.objects.length; i++) {
+      this.dataValue.objects[i].location = {
+        index: i,
+        column: 0,
+        nodeLevel: 1,
+        indexInRules: 0
+      };
       const data = JSON.parse(JSON.stringify(this.dataValue.objects[i]));
-      this.dataValue.objects[i].column = i;
       this.dataValue.map[data.id] = data;
     }
   }
