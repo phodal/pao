@@ -44,6 +44,8 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
 
     this.buildDataValueMap();
     this.calculatePositions(this.dataValue);
+
+    console.log(this.dataValue);
     this.startDraw();
   }
 
@@ -51,19 +53,18 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < dataValue.objects.length; i++) {
       const object = dataValue.objects[i];
-      if (object.rules) {
+      if (object.rules.length > 0) {
         dataValue.objects[i].currentLevel = 1;
         const currentLevel = 1;
         dataValue.objects[i] = this.buildObjectLevel(object, currentLevel);
       }
     }
 
-    console.log(dataValue);
     this.dataValue = dataValue;
   }
 
   private buildObjectLevel(object: DomainObject, currentLevel: number) {
-    currentLevel++;
+    currentLevel = currentLevel + 1;
     for (const rule of object.rules) {
       const ruleId = (rule as RuleModel).id;
       const forkObject = this.dataValue.map[ruleId];
@@ -72,9 +73,10 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
       }
 
       if (forkObject && forkObject.hasOwnProperty('rules') && forkObject.rules.length > 0) {
-        this.dataValue.objects[forkObject.id] = this.buildObjectLevel(this.dataValue.objects[forkObject.id], currentLevel);
-      } else if (this.dataValue.objects[forkObject.id]) {
-        this.dataValue.objects[forkObject.id].currentLevel = currentLevel;
+        // TODO: 多层规则时，肯定会出错……
+        this.dataValue.objects[forkObject.index] = this.buildObjectLevel(this.dataValue.objects[forkObject.id], currentLevel);
+      } else if (this.dataValue.objects[forkObject.index]) {
+        this.dataValue.objects[forkObject.index].currentLevel = currentLevel;
       }
     }
 
@@ -87,12 +89,17 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     const initPosition = {x: 20, y: 20};
     const basePosition: NormalPosition = JSON.parse(JSON.stringify(initPosition));
     const width = CONSTANTS.RECT_WIDTH;
+
+    // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < this.dataValue.objects.length; i++) {
       const object = this.dataValue.objects[i];
-      basePosition.x = initPosition.x + i * (width + 20);
-      this.drawDomainItem(this.draw, basePosition, width, object);
-
-      // width * maxNum / currentChildNums / level
+      basePosition.x = initPosition.x + object.currentLevel * (width + 20);
+      const position = {
+        x: basePosition.x,
+        y: width * object.rules.length / object.currentLevel
+        // width * maxNum / currentChildNums / level
+      };
+      this.drawDomainItem(this.draw, position, width, object);
     }
   }
 
@@ -139,7 +146,7 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     this.dataValue.map = {};
     for (let i = 0; i < this.dataValue.objects.length; i++) {
       const data = this.dataValue.objects[i];
-      this.dataValue.objects[i].index = i + 1;
+      this.dataValue.objects[i].index = i;
       this.dataValue.map[data.id] = data;
     }
   }
