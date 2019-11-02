@@ -43,7 +43,6 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     }
 
     this.buildDataValueMap();
-    console.log(this.dataValue);
     this.calculatePositions(this.dataValue);
     this.startDraw();
   }
@@ -60,6 +59,7 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     }
 
     console.log(dataValue);
+    this.dataValue = dataValue;
   }
 
   private buildObjectLevel(object: DomainObject, currentLevel: number) {
@@ -67,8 +67,14 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     for (const rule of object.rules) {
       const ruleId = (rule as RuleModel).id;
       const forkObject = this.dataValue.map[ruleId];
-      if (forkObject && forkObject.hasOwnProperty('rules')) {
+      if (!forkObject) {
+        continue;
+      }
+
+      if (forkObject && forkObject.hasOwnProperty('rules') && forkObject.rules.length > 0) {
         this.dataValue.objects[forkObject.id] = this.buildObjectLevel(this.dataValue.objects[forkObject.id], currentLevel);
+      } else if (this.dataValue.objects[forkObject.id]) {
+        this.dataValue.objects[forkObject.id].currentLevel = currentLevel;
       }
     }
 

@@ -38,6 +38,9 @@ export class PaoGrammarListener implements PaoListener {
 
   enterDomainEventDeclaration(ctx: DomainEventDeclarationContext) {
     this.currentObject.eventName = ctx.IDENTIFIER().text;
+    if (!this.currentObject.id) {
+      this.currentObject.id = shortid.generate();
+    }
   }
 
   enterCommandEventDeclaration(ctx: CommandEventDeclarationContext) {
@@ -76,18 +79,16 @@ export class PaoGrammarListener implements PaoListener {
     const ruleListContext = ctx.ruleList();
     const childrens = ruleListContext.IDENTIFIER();
 
-    const parentId = shortid.generate();
     for (const rule of childrens) {
       const id = shortid.generate();
       rules.push({
-        parentId,
+        parentId: this.currentObject.id,
         id,
         rule: rule.text
       });
     }
 
     this.allRules = this.allRules.concat(rules);
-    this.currentObject.id = parentId;
     this.currentObject.rules = rules;
   }
 
@@ -96,6 +97,7 @@ export class PaoGrammarListener implements PaoListener {
     const parent = this.allRules.filter(rule => ruleName === rule.rule);
     if (parent.length > 0) {
       this.currentObject.ruleId = parent[0].id;
+      this.currentObject.id  = parent[0].id;
       this.currentObject.parentId = parent[0].parentId;
     }
   }
