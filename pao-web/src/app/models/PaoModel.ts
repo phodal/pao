@@ -16,7 +16,7 @@ interface DomainObject {
   parentId?: string;
   ruleId?: string;
   index?: number;
-  totalLevel?: number;
+  level?: number;
 
   eventName: string;
   commandName: string;

@@ -59,13 +59,13 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
       const object = dataValue.objects[i];
       if (object.rules.length > 0) {
         const relateParentLevel = 1;
-        dataValue.objects[i].totalLevel = this.totalLevel;
+        dataValue.objects[i].level = this.totalLevel;
         dataValue.objects[i] = this.buildObjectLevel(object, relateParentLevel);
         this.totalLevel++;
         continue;
       }
       if (!object.ruleId) {
-        dataValue.objects[i].totalLevel = this.totalLevel;
+        dataValue.objects[i].level = this.totalLevel;
         this.totalLevel++;
       }
     }
@@ -92,7 +92,7 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
         // TODO: 多层规则时，肯定会出错……
         this.dataValue.objects[forkObject.index] = this.buildObjectLevel(this.dataValue.objects[forkObject.id], relateParentLevel);
       } else if (this.dataValue.objects[forkObject.index]) {
-        this.dataValue.objects[forkObject.index].totalLevel = this.totalLevel;
+        this.dataValue.objects[forkObject.index].level = this.totalLevel;
       }
     }
 
@@ -110,14 +110,14 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < this.dataValue.objects.length; i++) {
       const object = this.dataValue.objects[i];
-      basePosition.x = initPosition.x + object.totalLevel * (width + rectDistance);
-      basePosition.y = (width * this.maxHeight) / object.totalLevel;
+      basePosition.x = initPosition.x + object.level * (width + rectDistance);
+      basePosition.y = (width * this.maxHeight) / object.level;
 
       if (object.levelInfo) {
         basePosition.y = (object.levelInfo.index - 1) * (width + rectDistance + 30) * 3;
       }
 
-      console.log(object.totalLevel);
+      console.log(object.level);
       const position = {
         x: basePosition.x,
         y: basePosition.y
