@@ -47,6 +47,7 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
 
     this.buildDataValueMap();
     this.calculatePositions(this.dataValue);
+    console.log(this.dataValue);
     this.startDraw();
   }
 
@@ -81,18 +82,16 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
         continue;
       }
 
+      const changeObject = this.dataValue.objects[forkObject.index];
       this.dataValue.map[ruleId].levelInfo = {
         index: index + 1,
         level: relateParentLevel
       };
-      if (forkObject.rules && this.dataValue.objects[forkObject.index]) {
+      if (changeObject && forkObject.rules) {
         // TODO: 多层规则时，肯定会出错……
-        console.log(JSON.stringify(this.dataValue.objects[forkObject.index]))
-        this.dataValue.objects[forkObject.index] = this.buildObjectLevel(this.dataValue.objects[forkObject.index], relateParentLevel);
-        console.log('............');
-        console.log(JSON.stringify(this.dataValue.objects[forkObject.index]));
-      } else if (this.dataValue.objects[forkObject.index]) {
-        this.dataValue.objects[forkObject.index].level = this.totalLevel;
+        this.dataValue.objects[forkObject.index] = this.buildObjectLevel(changeObject, relateParentLevel);
+      } else if (changeObject) {
+        changeObject.level = this.totalLevel;
       }
     }
 
@@ -113,17 +112,20 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     const rectDistance = 20;
     let ruleCount = 0;
     // tslint:disable-next-line:prefer-for-of
+    console.log(this.dataValue);
     for (let i = 0; i < this.dataValue.objects.length; i++) {
       const object = this.dataValue.objects[i];
 
-      basePosition.y = (width * this.maxHeight) / object.level;
-      console.log(object);
       const mapObject = this.dataValue.map[object.id];
+
       if (mapObject && mapObject.levelInfo) {
+        basePosition.x = (width + rectDistance) * (mapObject.levelInfo.level + ruleCount - 1);
         basePosition.y = (mapObject.levelInfo.index - 1) * (width + rectDistance) * 3;
+      } else {
+        basePosition.y = (width * this.maxHeight) / object.level;
+        basePosition.x = (width + rectDistance) * (object.level + ruleCount - 1);
       }
 
-      basePosition.x = (width + rectDistance) * (object.level + ruleCount - 1);
       if (object.rules && object.rules.length > 0) {
         ruleCount++;
       }
