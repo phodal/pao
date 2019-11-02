@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {Rect, Svg, SVG} from '@svgdotjs/svg.js';
 import '@svgdotjs/svg.draggable.js'
-import {CONSTANTS, DOMAIN_COLORS} from "../constant";
+import {CONSTANTS, DOMAIN_COLORS} from "../../constant";
 
 
 

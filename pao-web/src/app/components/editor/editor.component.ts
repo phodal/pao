@@ -1,11 +1,12 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {PaoLexer} from "../parser/PaoLexer";
-import {PaoParser} from "../parser/PaoParser";
 import {CharStreams, CommonTokenStream} from "antlr4ts";
 import {ParseTreeListener, ParseTreeWalker} from "antlr4ts/tree";
 import {PaoGrammarListener} from "./PaoGrammarListener";
 import Mousetrap from "mousetrap";
 import {MonacoEditorComponent} from "@materia-ui/ngx-monaco-editor";
+
+import {PaoLexer} from "../../parser/PaoLexer";
+import {PaoParser} from "../../parser/PaoParser";
 
 @Component({
   selector: 'app-editor',
@@ -40,12 +41,13 @@ export class EditorComponent implements OnInit, AfterViewInit {
 
   bindKeys() {
     var that = this;
-    Mousetrap.bind(['command+s', 'ctrl+s'], function() {
+    Mousetrap.bind(['command+s', 'ctrl+s'], function () {
       console.log('renderGraph');
       that.renderGraph();
       return false;
     });
   }
+
   renderGraph() {
     var that = this;
     let inputStream = CharStreams.fromString(this.code);
@@ -141,7 +143,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
     monaco.editor.setTheme('paoTheme');
 
     const that = this;
-    this.editorElement.editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S, function() {
+    this.editorElement.editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S, function () {
       that.renderGraph();
     }, "");
   }

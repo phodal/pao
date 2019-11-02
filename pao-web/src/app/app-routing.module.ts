@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EditorComponent } from "./editor/editor.component";
-import { DcanvasComponent } from "./dcanvas/dcanvas.component";
+import { EditorComponent } from "./components/editor/editor.component";
+import { DcanvasComponent } from "./components/dcanvas/dcanvas.component";
 
 
 const routes: Routes = [
