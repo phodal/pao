@@ -24,7 +24,7 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
 
   private dataValue: PaoModel;
   private draw: Svg;
-  private maxHeight = 3;
+  private maxHeight = 1;
 
   constructor() {
   }
@@ -57,7 +57,7 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     this.totalLevel = 1;
     for (let i = 0; i < dataValue.objects.length; i++) {
       const object = dataValue.objects[i];
-      if (object.rules.length > 0) {
+      if (object.rules && object.rules.length > 0) {
         const relateParentLevel = 1;
         dataValue.objects[i].level = this.totalLevel;
         dataValue.objects[i] = this.buildObjectLevel(object, relateParentLevel);
@@ -76,6 +76,10 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
   private buildObjectLevel(object: DomainObject, relateParentLevel: number) {
     this.totalLevel++;
     relateParentLevel++;
+    if (!object) {
+      return;
+    }
+    console.log(object.rules);
     for (let index = 0; index < object.rules.length; index++) {
       const rule = object.rules[index];
       const ruleId = (rule as RuleModel).id;
@@ -94,6 +98,10 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
       } else if (this.dataValue.objects[forkObject.index]) {
         this.dataValue.objects[forkObject.index].level = this.totalLevel;
       }
+    }
+
+    if (object.rules.length * (relateParentLevel - 1) > this.maxHeight) {
+      this.maxHeight = object.rules.length * (relateParentLevel - 1);
     }
 
     return object;
