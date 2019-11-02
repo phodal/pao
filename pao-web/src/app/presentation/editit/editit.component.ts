@@ -13,22 +13,33 @@ import Mousetrap from 'mousetrap';
 })
 export class EdititComponent implements OnInit, AfterViewInit {
   parseResult: PaoModel;
-  codeData = `
-系统名称:庖丁解牛系统
+  codeData = `系统名称:庖丁解牛系统
 
 领域事件:a
 决策命令:a
 领域名词:a
-出规则:rule 1, rule 2, rule 3
+出规则:rule 1,rule 2,rule 3
 
 入规则:rule 1
 领域事件: b
 决策命令:b
 领域名词:b
 
-字段: [
-名称: Phodal
-]`;
+入规则:rule 2
+领域事件: 真不错
+决策命令:b
+领域名词:b
+
+入规则:rule 3
+领域事件: 下班了
+决策命令:b
+领域名词:b
+
+领域事件: 回到第一个规则
+决策命令: 还没有
+领域名词: 规则引擎
+
+`;
 
   constructor() {
 

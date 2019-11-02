@@ -20,24 +20,7 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     this.drawTree();
   }
 
-  private dataValue: PaoModel = {
-    name: '庖丁解牛系统',
-    map: {},
-    objects: [
-      {
-        eventName: 'a',
-        commandName: 'a',
-        rules: [],
-        conceptName: 'a'
-      },
-      {
-        eventName: ' b',
-        commandName: 'b',
-        rules: [],
-        conceptName: 'b'
-      }
-    ]
-  };
+  private dataValue: PaoModel;
   private draw: Svg;
 
   constructor() {
