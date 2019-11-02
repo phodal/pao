@@ -1,4 +1,4 @@
-import {PaoListener} from "../parser/PaoListener";
+import {PaoListener} from "../../parser/PaoListener";
 import {
   CommandEventDeclarationContext, CommentTextDeclarationContext,
   CompilationUnitContext, ConceptDeclarationContext,
@@ -7,7 +7,7 @@ import {
   RuleListContext, SchedulerDeclarationContext,
   SystemNameDeclarationContext,
   TypeRuleDeclarationContext
-} from "../parser/PaoParser";
+} from "../../parser/PaoParser";
 
 export class PaoGrammarListener implements PaoListener {
   systemName: string;
