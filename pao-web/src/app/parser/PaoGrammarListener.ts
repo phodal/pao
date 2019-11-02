@@ -2,18 +2,19 @@ import {PaoListener} from './PaoListener';
 import {
   CommandEventDeclarationContext, CommentTextDeclarationContext,
   CompilationUnitContext, ConceptDeclarationContext,
-  DomainEventDeclarationContext, ExtSystemDeclarationContext,
+  DomainEventDeclarationContext, EnterRuleDeclarationContext, ExtSystemDeclarationContext, InputRuleDeclarationContext,
   NewSectionDeclarationContext, RoleDeclarationContext,
   SchedulerDeclarationContext,
-  SystemNameDeclarationContext,
-  TypeRuleDeclarationContext
+  SystemNameDeclarationContext
 } from './PaoParser';
+import shortid from 'shortid';
 
 export class PaoGrammarListener implements PaoListener {
-  systemName: string;
   paoModel: PaoModel = {name: '', objects: []};
   currentObject: DomainObject;
   finishCallback: () => void;
+  ruleRelations = [];
+  allRules: RuleModel[] = [];
 
   constructor() {
     this.initCurrentObject();
@@ -23,7 +24,7 @@ export class PaoGrammarListener implements PaoListener {
     this.currentObject = {
       eventName: '',
       commandName: '',
-      rule: [],
+      rules: [],
       conceptName: ''
     };
   }
@@ -71,8 +72,32 @@ export class PaoGrammarListener implements PaoListener {
     this.initCurrentObject();
   }
 
-  enterTypeRuleDeclaration(ctx: TypeRuleDeclarationContext) {
+  enterEnterRuleDeclaration(ctx: EnterRuleDeclarationContext) {
+    const rules: RuleModel[] = [];
+    const ruleListContext = ctx.ruleList();
+    const childrens = ruleListContext.IDENTIFIER();
 
+    const parentId = shortid.generate();
+    for (const rule of childrens) {
+      const id = shortid.generate();
+      rules.push({
+        parentId,
+        id,
+        rule: rule.text
+      });
+    }
+    this.allRules = this.allRules.concat(rules);
+    this.currentObject.id = parentId;
+    this.currentObject.rules = rules;
+  }
+
+  enterInputRuleDeclaration(ctx: InputRuleDeclarationContext) {
+    const ruleName = ctx.IDENTIFIER().text;
+    const parent = this.allRules.filter(rule => ruleName === rule.rule);
+    if (parent.length > 0) {
+      this.currentObject.ruleId = parent[0].id;
+      this.currentObject.parentId = parent[0].parentId;
+    }
   }
 
   exitCompilationUnit(ctx: CompilationUnitContext) {

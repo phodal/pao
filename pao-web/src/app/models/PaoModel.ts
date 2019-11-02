@@ -4,15 +4,32 @@ interface PaoModel {
   objects: DomainObject[];
 }
 
+interface RuleModel {
+  parentId: number;
+  id: number;
+  rule: string;
+}
+
 interface DomainObject {
+  id?: number;
+  parentId?: number;
+  ruleId?: number;
   eventName: string;
   commandName: string;
-  rule: string[];
+  rules: string[] | RuleModel[];
   conceptName: string;
   comment?: string;
   externalSystem?: string;
   scheduler?: string;
   role?: string;
+}
+
+interface DomainObjectGraph extends DomainObject {
+  position: {
+    x: number;
+    y: number;
+  };
+  children: DomainObject[];
 }
 
 

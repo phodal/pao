@@ -30,8 +30,8 @@ extSystemDeclaration: EXT_SYSTEM COLON IDENTIFIER;
 schedulerDeclaration: SCHEDULER COLON IDENTIFIER;
 roleDeclaration: ROLE COLON IDENTIFIER;
 
-enterRuleDeclaration: ENTER_RULE COLON (IDENTIFIER | ruleList);
-inputRuleDeclaration: INPUT_RULE COLON (IDENTIFIER | ruleList);
+enterRuleDeclaration: ENTER_RULE COLON ruleList;
+inputRuleDeclaration: INPUT_RULE COLON IDENTIFIER;
 fieldDeclaration: FIELD COLON fieldList;
 
 newSectionDeclaration: NEWSECTION;
