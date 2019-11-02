@@ -21,10 +21,12 @@ export class PaoGrammarListener implements PaoListener {
 
   private initCurrentObject() {
     this.currentObject = {
+      id: null,
       eventName: '',
       commandName: '',
       rules: null,
-      conceptName: ''
+      conceptName: '',
+      ruleId: null
     };
   }
 

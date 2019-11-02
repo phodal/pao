@@ -18,7 +18,7 @@ export class EdititComponent implements OnInit, AfterViewInit {
 领域事件:a
 决策命令:a
 领域名词:a
-出规则:rule 1,rule 2,rule 3
+出规则:rule 1,rule 2,rule 3,rule 4
 
 入规则:rule 1
 领域事件: b
@@ -34,21 +34,29 @@ export class EdititComponent implements OnInit, AfterViewInit {
 领域事件: 下班了
 决策命令:b
 领域名词:b
-出规则:rule 4,rule 5
 
 入规则:rule 4
-领域事件: 回到第一个规则
-决策命令: 还没有
-领域名词: 规则引擎
-
-入规则:rule 5
-领域事件: 回到第一个规则2
-决策命令: 还没有2
-领域名词: 规则引擎2
+领域事件: 下班了
+决策命令:b
+领域名词:b
 
 领域事件:condition
 决策命令:condition
 领域名词:condition
+
+领域事件:a22
+决策命令:azz
+领域名词:azz
+出规则:rule 5,rule 6
+
+入规则:rule 5
+领域事件: b
+决策命令:b
+领域名词:b
+
+入规则:rule 6
+领域事件: 真不错
+决策命令:b
 
 `;
 

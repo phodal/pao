@@ -55,4 +55,6 @@ interface NodeLocation {
   column: number;
   nodeLevel: number;
   indexInRules: number;
+  parentLevelRulesCount: number;
+  currentNodeRulesLength: number;
 }

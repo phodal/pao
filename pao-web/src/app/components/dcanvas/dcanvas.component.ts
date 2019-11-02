@@ -24,7 +24,8 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
 
   private dataValue: PaoModel;
   private draw: Svg;
-  private maxHeight = 1;
+  private maxRulesLength = 0;
+  private currentRulesLength = 0;
 
   constructor() {
   }
@@ -53,19 +54,29 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
   private calculatePositions(dataValue: PaoModel) {
     // tslint:disable-next-line:prefer-for-of
     this.totalLevel = 1;
+    this.maxRulesLength = 0;
+
     for (let i = 0; i < dataValue.objects.length; i++) {
-      const object = dataValue.objects[i];
+      const object: DomainObject = dataValue.objects[i];
       if (object.rules) {
-        dataValue.objects[i].location.column = this.totalLevel;
-        dataValue.objects[i] = this.buildObjectLevel(object, dataValue.objects[i].location.column);
+        this.currentRulesLength = object.rules.length;
+        object.location.column = this.totalLevel;
+        object.location.currentNodeRulesLength = object.rules.length;
+        dataValue.objects[i] = this.buildObjectLevel(object, object.location.column);
         this.totalLevel++;
-        continue;
+      } else if (!object.rules && !object.ruleId) {
+        object.location.column = this.totalLevel;
+        dataValue.map[object.id].location.column = this.totalLevel;
+        this.totalLevel++;
+      } else if (object.ruleId) {
+        object.location.column = this.totalLevel;
+        dataValue.map[object.id].location.column = this.totalLevel;
       }
 
-      if (!object.rules && !object.ruleId) {
-        this.dataValue.map[object.id].location.column = this.totalLevel;
-        this.totalLevel++;
+      if (this.currentRulesLength > this.maxRulesLength) {
+        this.maxRulesLength = this.currentRulesLength;
       }
+      this.currentRulesLength = 0;
     }
 
     this.dataValue = dataValue;
@@ -76,26 +87,25 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     for (let index = 0; index < object.rules.length; index++) {
       const rule = object.rules[index];
       const ruleId = (rule as RuleModel).id;
-      const forkObject = this.dataValue.map[ruleId];
-      if (!forkObject) {
+      const mapChildObj = this.dataValue.map[ruleId];
+      if (!mapChildObj) {
         continue;
       }
 
-      const changeObject = this.dataValue.objects[forkObject.location.index];
+      const changeObject = this.dataValue.objects[mapChildObj.location.index];
 
-      forkObject.location.column = this.totalLevel;
-      forkObject.location.indexInRules = index + 1;
-      forkObject.location.nodeLevel = relateParentLevel;
+      mapChildObj.location.column = this.totalLevel;
+      mapChildObj.location.indexInRules = index + 1;
+      mapChildObj.location.nodeLevel = relateParentLevel;
+      mapChildObj.location.parentLevelRulesCount = this.currentRulesLength;
 
-      if (forkObject.rules) {
-        this.dataValue.objects[forkObject.index] = this.buildObjectLevel(changeObject, relateParentLevel);
+      if (mapChildObj.rules) {
+        this.currentRulesLength = this.currentRulesLength * mapChildObj.rules.length;
+        mapChildObj.location.currentNodeRulesLength = changeObject.rules.length;
+        this.dataValue.objects[mapChildObj.index] = this.buildObjectLevel(changeObject, relateParentLevel);
       } else {
         changeObject.location.column = this.totalLevel;
       }
-    }
-
-    if (object.rules.length * (relateParentLevel - 1) > this.maxHeight) {
-      this.maxHeight = object.rules.length * (relateParentLevel - 1);
     }
 
     return object;
@@ -125,7 +135,7 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
         rulesCount++;
       }
 
-      console.log(locationMapObject.location);
+      console.log(object.location);
       this.drawDomainItem(this.draw, basePosition, width, object);
     }
   }
@@ -136,11 +146,18 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
   }
 
   private getY(mapObject, rectSize) {
-    let basicIndex = 1;
-    if (mapObject.location.indexInRules) {
-      basicIndex = mapObject.location.indexInRules;
+    const location = mapObject.location;
+    const groupHeight = rectSize * 3;
+
+    if (!location.indexInRules) {
+      // TODO：改成奇偶数
+      const isObb = this.maxRulesLength % 2 === 0 ? 1 : 0;
+      return ((this.maxRulesLength - isObb) / 2) * groupHeight;
     }
-    return (basicIndex - 1) * rectSize * 3;
+
+    // TODO：更新当前节点的最大节点数
+    const num = (location.indexInRules - 1) / location.parentLevelRulesCount * this.maxRulesLength;
+    return num * groupHeight;
   }
 
   private drawDomainItem(draw: Svg, basePosition: NormalPosition, width: number, domainObject: DomainObject) {
@@ -200,7 +217,9 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
         index: i,
         column: 0,
         nodeLevel: 1,
-        indexInRules: 0
+        indexInRules: 0,
+        parentLevelRulesCount: 0,
+        currentNodeRulesLength: 0
       };
       const data = JSON.parse(JSON.stringify(this.dataValue.objects[i]));
       this.dataValue.map[data.id] = data;
