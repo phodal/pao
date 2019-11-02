@@ -94,6 +94,7 @@ export class PaoGrammarListener implements PaoListener {
 
   enterInputRuleDeclaration(ctx: InputRuleDeclarationContext) {
     const ruleName = ctx.IDENTIFIER().text;
+    this.currentObject.ruleName = ruleName;
     const parent = this.allRules.filter(rule => ruleName === rule.rule);
     if (parent.length > 0) {
       this.currentObject.ruleId = parent[0].id;

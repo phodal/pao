@@ -23,6 +23,8 @@ interface DomainObject {
   conceptName: string;
 
   rules?: string[] | RuleModel[];
+  ruleName?: string;
+
   comment?: string;
   externalSystem?: string;
   scheduler?: string;

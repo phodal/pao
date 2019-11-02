@@ -132,7 +132,7 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
 
   private drawDomainItem(draw: Svg, basePosition: NormalPosition, width: number, domainObject: DomainObject) {
     const domainGroup = draw.group();
-    const offset = 0;
+    const offset = 20;
 
     const commandGroup = draw.group();
     const commandRect = draw.rect(width, width).fill(DOMAIN_COLORS.COMMAND).move(basePosition.x, basePosition.y);
@@ -141,13 +141,24 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     commandGroup.add(commandText);
 
     const eventGroup = draw.group();
-    const eventRect = draw.rect(width, width).fill(DOMAIN_COLORS.EVENT).move(basePosition.x, basePosition.y + width + offset);
+    const eventRect = draw.rect(width, width).fill(DOMAIN_COLORS.EVENT).move(basePosition.x, basePosition.y + (width + offset) * 2);
     const eventText = this.createText(draw, domainObject.eventName, eventRect);
     eventGroup.add(eventRect);
     eventGroup.add(eventText);
 
+    if (domainObject.ruleName) {
+      const ruleGroup = draw.group();
+      const ruleRect = draw.rect(width, width).fill(DOMAIN_COLORS.RULE).move(basePosition.x - width - offset,
+        basePosition.y + (width + offset) * 2);
+      const ruleText = this.createText(draw, domainObject.ruleName, ruleRect);
+      ruleGroup.add(ruleRect);
+      ruleGroup.add(ruleText);
+
+      domainGroup.add(ruleGroup);
+    }
+
     const conceptGroup = draw.group();
-    const conceptRect = draw.rect(width, width).fill(DOMAIN_COLORS.CONCEPT).move(basePosition.x, basePosition.y + width * 2 + offset * 2);
+    const conceptRect = draw.rect(width, width).fill(DOMAIN_COLORS.CONCEPT).move(basePosition.x, basePosition.y + width + offset);
     const conceptText = this.createText(draw, domainObject.conceptName, conceptRect);
     conceptGroup.add(conceptRect);
     conceptGroup.add(conceptText);
