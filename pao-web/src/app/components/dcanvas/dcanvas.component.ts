@@ -10,6 +10,7 @@ import {CONSTANTS, DOMAIN_COLORS} from '../../constant';
   styleUrls: ['./dcanvas.component.less']
 })
 export class DcanvasComponent implements OnInit, AfterViewInit {
+  private currentLevel: number;
   get data(): PaoModel {
     return this.dataValue;
   }
@@ -22,6 +23,7 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
 
   private dataValue: PaoModel;
   private draw: Svg;
+  private maxHeight = 3;
 
   constructor() {
   }
@@ -51,20 +53,26 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
 
   private calculatePositions(dataValue: PaoModel) {
     // tslint:disable-next-line:prefer-for-of
+    this.currentLevel = 1;
     for (let i = 0; i < dataValue.objects.length; i++) {
       const object = dataValue.objects[i];
       if (object.rules.length > 0) {
-        dataValue.objects[i].currentLevel = 1;
-        const currentLevel = 1;
-        dataValue.objects[i] = this.buildObjectLevel(object, currentLevel);
+        dataValue.objects[i].currentLevel = this.currentLevel;
+        dataValue.objects[i] = this.buildObjectLevel(object);
+        this.currentLevel++;
+        continue;
+      }
+      if (!object.ruleId) {
+        dataValue.objects[i].currentLevel = this.currentLevel;
+        this.currentLevel++;
       }
     }
 
     this.dataValue = dataValue;
   }
 
-  private buildObjectLevel(object: DomainObject, currentLevel: number) {
-    currentLevel = currentLevel + 1;
+  private buildObjectLevel(object: DomainObject) {
+    this.currentLevel++;
     for (const rule of object.rules) {
       const ruleId = (rule as RuleModel).id;
       const forkObject = this.dataValue.map[ruleId];
@@ -74,9 +82,9 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
 
       if (forkObject && forkObject.hasOwnProperty('rules') && forkObject.rules.length > 0) {
         // TODO: 多层规则时，肯定会出错……
-        this.dataValue.objects[forkObject.index] = this.buildObjectLevel(this.dataValue.objects[forkObject.id], currentLevel);
+        this.dataValue.objects[forkObject.index] = this.buildObjectLevel(this.dataValue.objects[forkObject.id], this.currentLevel);
       } else if (this.dataValue.objects[forkObject.index]) {
-        this.dataValue.objects[forkObject.index].currentLevel = currentLevel;
+        this.dataValue.objects[forkObject.index].currentLevel = this.currentLevel;
       }
     }
 
@@ -94,11 +102,14 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < this.dataValue.objects.length; i++) {
       const object = this.dataValue.objects[i];
       basePosition.x = initPosition.x + object.currentLevel * (width + 20);
+      basePosition.y = this.maxHeight * width / 2;
+
+      console.log(object.currentLevel);
       const position = {
         x: basePosition.x,
-        y: width * object.rules.length / object.currentLevel
-        // width * maxNum / currentChildNums / level
+        y: (width * this.maxHeight) / object.currentLevel
       };
+      console.log(basePosition.x, position.y);
       this.drawDomainItem(this.draw, position, width, object);
     }
   }
