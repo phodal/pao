@@ -22,6 +22,7 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
 
   private dataValue: PaoModel = {
     name: '庖丁解牛系统',
+    map: {},
     objects: [
       {
         eventName: 'a',
@@ -58,12 +59,37 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
       return;
     }
 
+    this.buildDataValueMap();
+    console.log(this.dataValue);
     this.calculatePositions(this.dataValue);
     this.startDraw();
   }
 
   private calculatePositions(dataValue: PaoModel) {
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < dataValue.objects.length; i++) {
+      const object = dataValue.objects[i];
+      if (object.rules) {
+        dataValue.objects[i].currentLevel = 1;
+        const currentLevel = 1;
+        dataValue.objects[i] = this.buildObjectLevel(object, currentLevel);
+      }
+    }
 
+    console.log(dataValue);
+  }
+
+  private buildObjectLevel(object: DomainObject, currentLevel: number) {
+    currentLevel++;
+    for (const rule of object.rules) {
+      const ruleId = (rule as RuleModel).id;
+      const forkObject = this.dataValue.map[ruleId];
+      if (forkObject && forkObject.hasOwnProperty('rules')) {
+        this.dataValue.objects[forkObject.id] = this.buildObjectLevel(this.dataValue.objects[forkObject.id], currentLevel);
+      }
+    }
+
+    return object;
   }
 
   private startDraw() {
@@ -76,6 +102,8 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
       const object = this.dataValue.objects[i];
       basePosition.x = initPosition.x + i * (width + 20);
       this.drawDomainItem(this.draw, basePosition, width, object);
+
+      // width * maxNum / currentChildNums / level
     }
   }
 
@@ -116,5 +144,14 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     textEl.move(commandRect.x() + 20, commandRect.y() + 20)
       .font({fill: '#000', family: 'Inconsolata', size: '20'});
     return textEl;
+  }
+
+  private buildDataValueMap() {
+    this.dataValue.map = {};
+    for (let i = 0; i < this.dataValue.objects.length; i++) {
+      const data = this.dataValue.objects[i];
+      this.dataValue.objects[i].index = i + 1;
+      this.dataValue.map[data.id] = data;
+    }
   }
 }

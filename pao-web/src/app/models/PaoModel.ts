@@ -2,6 +2,7 @@ interface PaoModel {
   name: string;
 
   objects: DomainObject[];
+  map?: any;
 }
 
 interface RuleModel {
@@ -14,6 +15,8 @@ interface DomainObject {
   id?: string;
   parentId?: string;
   ruleId?: string;
+  index?: number;
+  currentLevel?: number;
 
   eventName: string;
   commandName: string;
