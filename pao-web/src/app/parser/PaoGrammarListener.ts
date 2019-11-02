@@ -1,13 +1,13 @@
-import {PaoListener} from "../../parser/PaoListener";
+import {PaoListener} from './PaoListener';
 import {
   CommandEventDeclarationContext, CommentTextDeclarationContext,
   CompilationUnitContext, ConceptDeclarationContext,
   DomainEventDeclarationContext, ExtSystemDeclarationContext,
   NewSectionDeclarationContext, RoleDeclarationContext,
-  RuleListContext, SchedulerDeclarationContext,
+  SchedulerDeclarationContext,
   SystemNameDeclarationContext,
   TypeRuleDeclarationContext
-} from "../../parser/PaoParser";
+} from './PaoParser';
 
 export class PaoGrammarListener implements PaoListener {
   systemName: string;
@@ -21,10 +21,10 @@ export class PaoGrammarListener implements PaoListener {
 
   private initCurrentObject() {
     this.currentObject = {
-      eventName: "",
-      commandName: "",
+      eventName: '',
+      commandName: '',
       rule: [],
-      conceptName: ""
+      conceptName: ''
     };
   }
 
@@ -38,29 +38,29 @@ export class PaoGrammarListener implements PaoListener {
 
   enterDomainEventDeclaration(ctx: DomainEventDeclarationContext) {
     this.currentObject.eventName = ctx.IDENTIFIER().text;
-  };
+  }
 
   enterCommandEventDeclaration(ctx: CommandEventDeclarationContext) {
     this.currentObject.commandName = ctx.IDENTIFIER().text;
   }
 
-  enterConceptDeclaration (ctx: ConceptDeclarationContext) {
+  enterConceptDeclaration(ctx: ConceptDeclarationContext) {
     this.currentObject.conceptName = ctx.IDENTIFIER().text;
   }
 
-  enterCommentTextDeclaration (ctx: CommentTextDeclarationContext) {
+  enterCommentTextDeclaration(ctx: CommentTextDeclarationContext) {
     this.currentObject.comment = ctx.IDENTIFIER().text;
   }
 
-  enterExtSystemDeclaration (ctx: ExtSystemDeclarationContext) {
+  enterExtSystemDeclaration(ctx: ExtSystemDeclarationContext) {
     this.currentObject.externalSystem = ctx.IDENTIFIER().text;
   }
 
-  enterSchedulerDeclaration (ctx: SchedulerDeclarationContext) {
+  enterSchedulerDeclaration(ctx: SchedulerDeclarationContext) {
     this.currentObject.scheduler = ctx.IDENTIFIER().text;
   }
 
-  enterRoleDeclaration (ctx: RoleDeclarationContext) {
+  enterRoleDeclaration(ctx: RoleDeclarationContext) {
     this.currentObject.role = ctx.IDENTIFIER().text;
   }
 
@@ -69,17 +69,17 @@ export class PaoGrammarListener implements PaoListener {
       this.paoModel.objects = this.paoModel.objects.concat(this.currentObject);
     }
     this.initCurrentObject();
-  };
+  }
 
   enterTypeRuleDeclaration(ctx: TypeRuleDeclarationContext) {
 
-  };
+  }
 
   exitCompilationUnit(ctx: CompilationUnitContext) {
     if (this.finishCallback) {
       this.finishCallback();
     }
-  };
+  }
 
   getParseResult() {
     console.log(this.paoModel);

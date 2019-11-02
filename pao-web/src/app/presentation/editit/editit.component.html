@@ -1,0 +1,8 @@
+<div class="editit">
+    <div class="editor">
+        <app-editor [code]="codeData" (codeChange)="codeChange($event)"></app-editor>
+    </div>
+    <div class="graph">
+        <app-dcanvas *ngIf="parseResult" [data]="parseResult"></app-dcanvas>
+    </div>
+</div>
