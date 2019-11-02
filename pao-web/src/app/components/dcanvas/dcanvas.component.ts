@@ -57,9 +57,8 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < dataValue.objects.length; i++) {
       const object = dataValue.objects[i];
       if (object.rules) {
-        const relateParentLevel = 1;
         dataValue.objects[i].level = this.totalLevel;
-        dataValue.objects[i] = this.buildObjectLevel(object, relateParentLevel);
+        dataValue.objects[i] = this.buildObjectLevel(object, dataValue.objects[i].level);
         this.totalLevel++;
       }
       if (!object.ruleId && !dataValue.objects[i].level) {
@@ -72,7 +71,6 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
   }
 
   private buildObjectLevel(object: DomainObject, relateParentLevel: number) {
-    this.totalLevel++;
     relateParentLevel++;
     for (let index = 0; index < object.rules.length; index++) {
       const rule = object.rules[index];
@@ -112,12 +110,12 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     const rectDistance = 20;
     let ruleCount = 0;
     // tslint:disable-next-line:prefer-for-of
-    console.log(this.dataValue);
     for (let i = 0; i < this.dataValue.objects.length; i++) {
       const object = this.dataValue.objects[i];
 
       const mapObject = this.dataValue.map[object.id];
 
+      console.log(this.maxHeight);
       if (mapObject && mapObject.levelInfo) {
         basePosition.x = (width + rectDistance) * (mapObject.levelInfo.level + ruleCount - 1);
         basePosition.y = (mapObject.levelInfo.index - 1) * (width + rectDistance) * 3;
