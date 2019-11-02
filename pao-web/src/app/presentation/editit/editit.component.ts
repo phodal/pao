@@ -34,7 +34,9 @@ export class EdititComponent implements OnInit, AfterViewInit {
 领域事件: 下班了
 决策命令:b
 领域名词:b
+出规则:rule 4
 
+入规则:rule 4
 领域事件: 回到第一个规则
 决策命令: 还没有
 领域名词: 规则引擎

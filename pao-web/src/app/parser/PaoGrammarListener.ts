@@ -23,7 +23,7 @@ export class PaoGrammarListener implements PaoListener {
     this.currentObject = {
       eventName: '',
       commandName: '',
-      rules: [],
+      rules: null,
       conceptName: ''
     };
   }

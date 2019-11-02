@@ -47,8 +47,6 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
 
     this.buildDataValueMap();
     this.calculatePositions(this.dataValue);
-
-    console.log(this.dataValue);
     this.startDraw();
   }
 
@@ -57,14 +55,13 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
     this.totalLevel = 1;
     for (let i = 0; i < dataValue.objects.length; i++) {
       const object = dataValue.objects[i];
-      if (object.rules && object.rules.length > 0) {
+      if (object.rules) {
         const relateParentLevel = 1;
         dataValue.objects[i].level = this.totalLevel;
         dataValue.objects[i] = this.buildObjectLevel(object, relateParentLevel);
         this.totalLevel++;
-        continue;
       }
-      if (!object.ruleId) {
+      if (!object.ruleId && !dataValue.objects[i].level) {
         dataValue.objects[i].level = this.totalLevel;
         this.totalLevel++;
       }
@@ -76,10 +73,6 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
   private buildObjectLevel(object: DomainObject, relateParentLevel: number) {
     this.totalLevel++;
     relateParentLevel++;
-    if (!object) {
-      return;
-    }
-    console.log(object.rules);
     for (let index = 0; index < object.rules.length; index++) {
       const rule = object.rules[index];
       const ruleId = (rule as RuleModel).id;
@@ -92,9 +85,12 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
         index: index + 1,
         level: relateParentLevel
       };
-      if (forkObject && forkObject.hasOwnProperty('rules') && forkObject.rules.length > 0) {
+      if (forkObject.rules && this.dataValue.objects[forkObject.index]) {
         // TODO: 多层规则时，肯定会出错……
-        this.dataValue.objects[forkObject.index] = this.buildObjectLevel(this.dataValue.objects[forkObject.id], relateParentLevel);
+        console.log(JSON.stringify(this.dataValue.objects[forkObject.index]))
+        this.dataValue.objects[forkObject.index] = this.buildObjectLevel(this.dataValue.objects[forkObject.index], relateParentLevel);
+        console.log('............');
+        console.log(JSON.stringify(this.dataValue.objects[forkObject.index]));
       } else if (this.dataValue.objects[forkObject.index]) {
         this.dataValue.objects[forkObject.index].level = this.totalLevel;
       }
@@ -121,14 +117,15 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
       const object = this.dataValue.objects[i];
 
       basePosition.y = (width * this.maxHeight) / object.level;
-      if (object.levelInfo) {
-        basePosition.y = (object.levelInfo.index - 1) * (width + rectDistance) * 3;
+      console.log(object);
+      const mapObject = this.dataValue.map[object.id];
+      if (mapObject && mapObject.levelInfo) {
+        basePosition.y = (mapObject.levelInfo.index - 1) * (width + rectDistance) * 3;
       }
 
       basePosition.x = (width + rectDistance) * (object.level + ruleCount - 1);
-      if (object.rules.length > 0) {
+      if (object.rules && object.rules.length > 0) {
         ruleCount++;
-        console.log(ruleCount);
       }
 
       this.drawDomainItem(this.draw, {
@@ -191,7 +188,7 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
   private buildDataValueMap() {
     this.dataValue.map = {};
     for (let i = 0; i < this.dataValue.objects.length; i++) {
-      const data = this.dataValue.objects[i];
+      const data = JSON.parse(JSON.stringify(this.dataValue.objects[i]));
       this.dataValue.objects[i].index = i;
       this.dataValue.map[data.id] = data;
     }
