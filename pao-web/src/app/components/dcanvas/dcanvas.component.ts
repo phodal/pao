@@ -26,13 +26,13 @@ export class DcanvasComponent implements OnInit, AfterViewInit {
       {
         eventName: 'a',
         commandName: 'a',
-        rule: [],
+        rules: [],
         conceptName: 'a'
       },
       {
         eventName: ' b',
         commandName: 'b',
-        rule: [],
+        rules: [],
         conceptName: 'b'
       }
     ]
