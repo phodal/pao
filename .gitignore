@@ -5,3 +5,4 @@
 *.go
 node_modules/
 language/
+main.wasm
