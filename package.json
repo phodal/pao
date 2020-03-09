@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy":  "ng deploy",
   },
   "private": true,
   "dependencies": {
@@ -22,6 +23,7 @@
     "@materia-ui/ngx-monaco-editor": "^2.0.7",
     "@svgdotjs/svg.draggable.js": "^3.0.2",
     "@svgdotjs/svg.js": "^3.0.14",
+    "angular-cli-ghpages": "^0.6.2",
     "antlr4ts": "^0.5.0-alpha.3",
     "mousetrap": "^1.6.3",
     "rxjs": "~6.4.0",
