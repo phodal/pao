@@ -98,7 +98,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
 
     const model = (window as any).monaco.editor.getModels()[0];
     monaco.editor.setModelLanguage(model, 'pao');
-    monaco.editor.setTheme('paoTheme');
+    // monaco.editor.setTheme('paoTheme');
 
     const that = this;
     // tslint:disable-next-line:no-bitwise only-arrow-functions

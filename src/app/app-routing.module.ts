@@ -8,7 +8,7 @@ import {EdititComponent} from './presentation/editit/editit.component';
 const routes: Routes = [
   {path: 'editor', component: EditorComponent},
   {path: 'dcanvas', component: DcanvasComponent},
-  {path: 'editit', component: EdititComponent}
+  {path: '', component: EdititComponent}
 ];
 
 @NgModule({
